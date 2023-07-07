@@ -6,11 +6,11 @@ type State = {
   };
 };
 
-const initialState = {
+const initialState: State = {
   value: {
     mainGoals: null,
   },
-} as State;
+};
 
 export const mainGoalsSlice = createSlice({
   name: "main goals",

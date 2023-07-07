@@ -8,13 +8,13 @@ type State = {
   };
 };
 
-const initialState = {
+const initialState: State = {
   value: {
     username: null,
     uid: null,
     goals: null,
   },
-} as State;
+};
 
 export const userSlice = createSlice({
   name: "user slice",
