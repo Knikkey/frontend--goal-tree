@@ -2,13 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 type State = {
   value: {
-    mainGoals: string[] | null;
+    treeTop: string | null;
   };
 };
 
 const initialState = {
   value: {
-    mainGoals: null,
+    treeTop: null,
   },
 } as State;
 
@@ -16,10 +16,10 @@ export const mainGoalsSlice = createSlice({
   name: "main goals",
   initialState,
   reducers: {
-    setMainGoals: (state, action) => {
+    setTreeTop: (state, action) => {
       return {
         value: {
-          mainGoals: action.payload,
+          treeTop: action.payload,
         },
       };
     },
