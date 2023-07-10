@@ -16,17 +16,14 @@ export default function Home() {
       <div className={styles["content-container"]}>
         <h1>Goal Planner</h1>
         <h2>Divide and Conquor Your Goals</h2>
-        <a
-          href="http://localhost:5000/auth/google"
-          className={styles["login-btn"]}
-        >
+        <button onClick={handleLogin} className={styles["login-btn"]}>
           <Image
             src={googleIcon}
             alt="google icon"
             className={styles.icon}
           ></Image>
           Login With Google
-        </a>
+        </button>
       </div>
     </main>
   );
