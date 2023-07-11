@@ -1,19 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 type State = {
-  value: {
-    username: string | null;
-    uid: string | null;
-    goals: string[] | null;
-  };
+  name: string | null;
+  id: string | null;
+  provider: string | null;
+  email: string | null;
+  goals?: string[] | null;
 };
 
 const initialState: State = {
-  value: {
-    username: null,
-    uid: null,
-    goals: null,
-  },
+  name: null,
+  id: null,
+  provider: null,
+  email: null,
+  goals: null,
 };
 
 export const userSlice = createSlice({
@@ -21,16 +21,17 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     logout: () => initialState,
-    login: (state, action) => {
+    login: (state, action: PayloadAction<State>) => {
       return {
-        value: {
-          username: action.payload.name,
-          uid: action.payload.id,
-          goals: action.payload.goals,
-        },
+        name: action.payload.name,
+        id: action.payload.id,
+        goals: action.payload.goals,
+        provider: action.payload.provider,
+        email: action.payload.email,
       };
     },
   },
 });
 
+export const { logout, login } = userSlice.actions;
 export default userSlice.reducer;
