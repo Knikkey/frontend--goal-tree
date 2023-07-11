@@ -27,8 +27,11 @@ export default function page() {
     handleLogin();
   }, []);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     dispatch(logout());
+    await fetch("http://localhost:5000/auth/logout", {
+      credentials: "include",
+    });
     router.push("/");
   };
 
