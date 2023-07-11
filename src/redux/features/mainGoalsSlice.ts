@@ -1,15 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 type State = {
-  value: {
-    mainGoals: string[] | null;
-  };
+  mainGoals: string[] | null;
 };
 
 const initialState: State = {
-  value: {
-    mainGoals: null,
-  },
+  mainGoals: null,
 };
 
 export const mainGoalsSlice = createSlice({
@@ -18,12 +14,11 @@ export const mainGoalsSlice = createSlice({
   reducers: {
     setMainGoals: (state, action) => {
       return {
-        value: {
-          mainGoals: action.payload,
-        },
+        mainGoals: action.payload,
       };
     },
   },
 });
 
+export const { setMainGoals } = mainGoalsSlice.actions;
 export default mainGoalsSlice.reducer;

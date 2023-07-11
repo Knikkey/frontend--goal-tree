@@ -5,6 +5,7 @@ import { AppDispatch, useTypedSelector } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import styles from "./dashboard.module.scss";
 import { useRouter } from "next/navigation";
+import MainGoals from "./_components/maingoals/MainGoals";
 
 export default function page() {
   const dispatch = useDispatch<AppDispatch>();
@@ -39,6 +40,7 @@ export default function page() {
     <main className={styles.dashboard}>
       <div className={styles.sidebar}>
         <h1>Hello, {firstName}!</h1>
+        <MainGoals />
         <button onClick={handleLogout}>Logout</button>
       </div>
       <div className={styles.mainbar}></div>
