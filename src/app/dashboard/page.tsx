@@ -3,9 +3,11 @@ import { useEffect } from "react";
 import { login, logout } from "../../redux/features/userSlice";
 import { AppDispatch, useTypedSelector } from "@/redux/store";
 import { useDispatch } from "react-redux";
-import styles from "./dashboard.module.scss";
 import { useRouter } from "next/navigation";
 import MainGoals from "./_components/maingoals/MainGoals";
+import { Button } from "@mui/material";
+
+import styles from "./dashboard.module.scss";
 
 export default function page() {
   const dispatch = useDispatch<AppDispatch>();
@@ -41,7 +43,9 @@ export default function page() {
       <div className={styles.sidebar}>
         <h1>Hello, {firstName}!</h1>
         <MainGoals />
-        <button onClick={handleLogout}>Logout</button>
+        <Button variant="contained" color="error" onClick={handleLogout}>
+          Logout
+        </Button>
       </div>
       <div className={styles.mainbar}></div>
     </main>
