@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch, useTypedSelector } from "@/redux/store";
 import { setMainGoals } from "@/redux/features/mainGoalsSlice";
+import PlusButton from "@/mui-components/PlusButton";
 
 import styles from "./MainGoals.module.scss";
 
@@ -29,6 +30,11 @@ export default function MainGoals() {
     };
     getMainGoals();
   });
+
+  const handleAddMainGoal = () => {
+    console.log("button clicked!");
+  };
+
   return (
     <div className={styles["main-goals"]}>
       <p>ID: {id}</p>
@@ -39,8 +45,7 @@ export default function MainGoals() {
             <p>Goal id: {goal}</p>
           </div>
         ))}
-
-      <button>Add a new goal</button>
+      <PlusButton onClick={handleAddMainGoal} ariaLabel="add a new main goal" />
     </div>
   );
 }
