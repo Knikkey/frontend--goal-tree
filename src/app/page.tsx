@@ -25,6 +25,13 @@ export default function Home() {
         <Button
           onClick={handleLogin}
           variant="outlined"
+          sx={{
+            color: "#111",
+            backgroundColor: "#fff",
+            "&:hover": {
+              backgroundColor: "#eee",
+            },
+          }}
           startIcon={
             <Icon className={styles.icon}>
               <Image
