@@ -23,3 +23,7 @@ main {
   background-color: #111;
   color: white;
 }
+
+.form {
+  padding: 1rem;
+}

@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import MainGoals from "./_components/maingoals/MainGoals";
 import { Button } from "@mui/material";
+import Form from "@/mui-components/Form";
 
 import styles from "./dashboard.module.scss";
 
@@ -47,7 +48,9 @@ export default function page() {
           Logout
         </Button>
       </div>
-      <div className={styles.mainbar}></div>
+      <div className={styles.mainbar}>
+        <Form />
+      </div>
     </main>
   );
 }
