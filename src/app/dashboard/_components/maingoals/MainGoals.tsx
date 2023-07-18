@@ -19,17 +19,21 @@ export default function MainGoals() {
           `http://localhost:5000/dashboard/main-goals/${id}`,
           {
             credentials: "include",
+            headers: {
+              "Content-Type": "application/json;charset=UTF-8",
+              Accept: "application/json",
+            },
           }
         );
         const data = await res.json();
-        console.log(data);
-        dispatch(setMainGoals(data));
+        const arr = data.map((goal) => goal.id);
+        dispatch(setMainGoals(arr));
       } catch (err) {
         console.log(err);
       }
     };
     getMainGoals();
-  });
+  }, [id]);
 
   const handleAddMainGoal = () => {
     console.log("button clicked!");
@@ -41,7 +45,7 @@ export default function MainGoals() {
       <p>Main Goal Length: {mainGoals ? mainGoals.length : "null"}</p>
       {mainGoals &&
         mainGoals.map((goal) => (
-          <div className={styles.goal}>
+          <div key={goal} className={styles.goal}>
             <p>Goal id: {goal}</p>
           </div>
         ))}

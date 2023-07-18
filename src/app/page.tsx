@@ -14,14 +14,6 @@ export default function Home() {
       <div className={styles["content-container"]}>
         <h1>Goal Planner</h1>
         <h2>Divide and Conquor Your Goals</h2>
-        {/* <button onClick={handleLogin} className={styles["login-btn"]}>
-          <Image
-            src={googleIcon}
-            alt="google icon"
-            className={styles.icon}
-          ></Image>
-          Login With Google
-        </button> */}
         <Button
           onClick={handleLogin}
           variant="outlined"

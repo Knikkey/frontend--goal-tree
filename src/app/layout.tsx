@@ -1,5 +1,4 @@
 import ReduxProvider from "@/redux/provider";
-import ColorThemeProvider from "@/mui-components/ColorThemeProvider";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -18,9 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ColorThemeProvider>
-          <ReduxProvider>{children}</ReduxProvider>
-        </ColorThemeProvider>
+        <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
   );
