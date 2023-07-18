@@ -1,7 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { GoodPageCache } from "next/dist/client/page-loader";
+
+type GoalsType = {
+  id: string;
+  title: string;
+};
 
 type State = {
-  mainGoals: string[] | null;
+  mainGoals: GoalsType[] | null;
 };
 
 const initialState: State = {

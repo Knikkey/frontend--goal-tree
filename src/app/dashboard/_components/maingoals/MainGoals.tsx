@@ -26,7 +26,9 @@ export default function MainGoals() {
           }
         );
         const data = await res.json();
-        const arr = data.map((goal) => goal.id);
+        const arr = data.map((goal) => {
+          return { id: goal.id, title: goal.title };
+        });
         dispatch(setMainGoals(arr));
       } catch (err) {
         console.log(err);
@@ -41,12 +43,10 @@ export default function MainGoals() {
 
   return (
     <div className={styles["main-goals"]}>
-      <p>ID: {id}</p>
-      <p>Main Goal Length: {mainGoals ? mainGoals.length : "null"}</p>
       {mainGoals &&
         mainGoals.map((goal) => (
-          <div key={goal} className={styles.goal}>
-            <p>Goal id: {goal}</p>
+          <div key={goal.id} id={goal.id} className={styles.goal}>
+            <p>{goal.title}</p>
           </div>
         ))}
       <PlusButton onClick={handleAddMainGoal} ariaLabel="add a new main goal" />
