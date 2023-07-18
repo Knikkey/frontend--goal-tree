@@ -4,9 +4,9 @@ import { login, logout } from "../../redux/features/userSlice";
 import { AppDispatch, useTypedSelector } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-import MainGoals from "./_components/maingoals/MainGoals";
 import { Button } from "@mui/material";
-import Form from "@/mui-components/Form";
+import Form from "@/mui-components/MainGoalForm";
+import MainGoals from "./_components/maingoals/MainGoals";
 
 import styles from "./dashboard.module.scss";
 

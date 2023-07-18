@@ -6,22 +6,20 @@ import {
   DialogContent,
   DialogActions,
 } from "@mui/material";
-import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useTypedSelector, AppDispatch } from "@/redux/store";
+import { closeModal } from "@/redux/features/modalSlice";
 
-export default function Modal({ children, handleSubmit }) {
-  const [open, setOpen] = useState(false);
+export default function Modal({ children }) {
+  const dispatch = useDispatch<AppDispatch>();
+  const { mainGoalsOpen } = useTypedSelector((state) => state.modal);
 
   return (
-    <Dialog
-      open={open}
-      onClose={() => setOpen(false)}
-      aria-labelledby="dialog-title"
-    >
+    <Dialog open={mainGoalsOpen} aria-labelledby="dialog-title">
       <DialogTitle id="dialog-title">Add a goal</DialogTitle>
       <DialogContent>{children}</DialogContent>
       <DialogActions>
-        <Button onClick={() => setOpen(false)}>Cancel</Button>
-        <Button onClick={handleSubmit}>Submit</Button>
+        <Button onClick={() => dispatch(closeModal)}>Cancel</Button>
       </DialogActions>
     </Dialog>
   );

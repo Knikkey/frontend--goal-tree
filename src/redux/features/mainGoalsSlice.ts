@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { GoodPageCache } from "next/dist/client/page-loader";
 
 type GoalsType = {
   id: string;

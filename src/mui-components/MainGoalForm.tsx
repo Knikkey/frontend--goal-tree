@@ -10,7 +10,10 @@ import {
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { useEffect } from "react";
-import { useTypedSelector } from "@/redux/store";
+import { useTypedSelector, AppDispatch } from "@/redux/store";
+import { closeModal } from "@/redux/features/modalSlice";
+import Modal from "./Modal";
+import { useDispatch } from "react-redux";
 
 const inputStyle = {
   input: {
@@ -27,8 +30,9 @@ type FormValues = {
   completed: boolean;
 };
 
-export default function Form() {
+export default function MainGoalForm() {
   const { id } = useTypedSelector((state) => state.user);
+  const dispatch = useDispatch<AppDispatch>();
   const form = useForm<FormValues>({
     defaultValues: {
       completed: false,
@@ -51,6 +55,7 @@ export default function Form() {
         body: JSON.stringify(newGoal),
       });
       const results = await res.json();
+      dispatch(closeModal);
       console.log("success", results);
       return results;
     } catch (err) {
@@ -63,7 +68,7 @@ export default function Form() {
   }, [isSubmitSuccessful, reset]);
 
   return (
-    <>
+    <Modal>
       <form className="form" onSubmit={handleSubmit(onSubmit)} noValidate>
         <Stack spacing={2}>
           <Typography variant="h4" component="h1">
@@ -119,6 +124,6 @@ export default function Form() {
         </Stack>
       </form>
       <DevTool control={control} />
-    </>
+    </Modal>
   );
 }

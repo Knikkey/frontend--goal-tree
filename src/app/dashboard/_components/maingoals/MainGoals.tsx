@@ -3,13 +3,15 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch, useTypedSelector } from "@/redux/store";
 import { setMainGoals } from "@/redux/features/mainGoalsSlice";
+import { Button, Stack, Typography } from "@mui/material";
 import PlusButton from "@/mui-components/PlusButton";
-
-import styles from "./MainGoals.module.scss";
+import { openMainGoals } from "@/redux/features/modalSlice";
+import MainGoalForm from "@/mui-components/MainGoalForm";
 
 export default function MainGoals() {
   const dispatch = useDispatch<AppDispatch>();
   const { mainGoals } = useTypedSelector((state) => state.mainGoals);
+  const { mainGoalsOpen } = useTypedSelector((state) => state.modal);
   const { id } = useTypedSelector((state) => state.user);
 
   useEffect(() => {
@@ -42,14 +44,29 @@ export default function MainGoals() {
   };
 
   return (
-    <div className={styles["main-goals"]}>
+    <Stack spacing={2}>
       {mainGoals &&
         mainGoals.map((goal) => (
-          <div key={goal.id} id={goal.id} className={styles.goal}>
-            <p>{goal.title}</p>
-          </div>
+          <Button
+            key={goal.id}
+            id={goal.id}
+            sx={{
+              padding: "0.5rem 1rem",
+              textTransform: "initial !important",
+            }}
+            variant="contained"
+            color="secondary"
+          >
+            <Typography variant="h6" component="span">
+              {goal.title}
+            </Typography>
+          </Button>
         ))}
-      <PlusButton onClick={handleAddMainGoal} ariaLabel="add a new main goal" />
-    </div>
+      <PlusButton
+        onClick={() => dispatch(openMainGoals)}
+        ariaLabel="add a new main goal"
+      />
+      {mainGoalsOpen && <MainGoalForm />}
+    </Stack>
   );
 }
