@@ -5,7 +5,7 @@ type State = {
 };
 
 const initialState: State = {
-  mainGoalsOpen: false,
+  mainGoalsOpen: true,
 };
 
 export const modalSlice = createSlice({

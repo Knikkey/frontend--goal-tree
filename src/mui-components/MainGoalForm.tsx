@@ -68,10 +68,10 @@ export default function MainGoalForm() {
   }, [isSubmitSuccessful, reset]);
 
   return (
-    <Modal>
+    <Modal dialogueTitle="Create New Goal">
       <form className="form" onSubmit={handleSubmit(onSubmit)} noValidate>
         <Stack spacing={2}>
-          <Typography variant="h4" component="h1">
+          <Typography variant="h4" component="h2" sx={{ color: "white" }}>
             Create New Goal
           </Typography>
           <TextField
@@ -92,6 +92,9 @@ export default function MainGoalForm() {
           />
           <FormControlLabel
             label="Completed"
+            sx={{
+              color: "white",
+            }}
             control={
               <Checkbox
                 sx={{
@@ -104,7 +107,7 @@ export default function MainGoalForm() {
             // checked={state}
             // onChange={handleCompleted}
           />
-          <Stack spacing={2} direction="row">
+          <Stack spacing={2} direction="row" justifyContent="end">
             <Button
               variant="outlined"
               onClick={() => reset()}
