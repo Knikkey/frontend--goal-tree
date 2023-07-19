@@ -12,11 +12,6 @@ export default function Modal({ children, dialogueTitle }) {
     <Dialog
       open={mainGoalIsOpen}
       onClose={() => dispatch(closeModal())}
-      PaperProps={{
-        sx: {
-          backgroundColor: "#222",
-        },
-      }}
       aria-label={dialogueTitle}
     >
       <DialogContent>{children}</DialogContent>

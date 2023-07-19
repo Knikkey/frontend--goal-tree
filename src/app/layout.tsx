@@ -1,6 +1,7 @@
 import ReduxProvider from "@/redux/provider";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import ColorThemeProvider from "@/mui-components/ColorThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ReduxProvider>{children}</ReduxProvider>
+        <ReduxProvider>
+          <ColorThemeProvider>{children}</ColorThemeProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

@@ -6,23 +6,15 @@ import {
   Typography,
   Button,
   Stack,
+  Snackbar,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTypedSelector, AppDispatch } from "@/redux/store";
 import { closeModal } from "@/redux/features/modalSlice";
 import Modal from "./Modal";
 import { useDispatch } from "react-redux";
-
-const inputStyle = {
-  input: {
-    color: "white",
-    borderColor: "white",
-  },
-  label: { color: "white !important" },
-  fieldset: { borderColor: "white !important" },
-};
 
 type FormValues = {
   title: string;
@@ -31,6 +23,7 @@ type FormValues = {
 };
 
 export default function MainGoalForm() {
+  const [snackIsOpen, setSnackIsOpen] = useState(false);
   const { id } = useTypedSelector((state) => state.user);
   const dispatch = useDispatch<AppDispatch>();
   const form = useForm<FormValues>({
@@ -55,12 +48,21 @@ export default function MainGoalForm() {
         body: JSON.stringify(newGoal),
       });
       const results = await res.json();
-      dispatch(closeModal);
+      setSnackIsOpen(true);
+      //if we decide later we want to close on submit
+      //dispatch(closeModal());
       console.log("success", results);
       return results;
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const closeSnack = (_, reason: string) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setSnackIsOpen(false);
   };
 
   useEffect(() => {
@@ -71,7 +73,7 @@ export default function MainGoalForm() {
     <Modal dialogueTitle="Create New Goal">
       <form className="form" onSubmit={handleSubmit(onSubmit)} noValidate>
         <Stack spacing={2}>
-          <Typography variant="h4" component="h2" sx={{ color: "white" }}>
+          <Typography variant="h4" component="h2">
             Create New Goal
           </Typography>
           <TextField
@@ -80,28 +82,17 @@ export default function MainGoalForm() {
             {...register("title", { required: "Please name your goal" })}
             error={!!errors.title}
             helperText={errors.title?.message}
-            autoFocus={true}
-            sx={inputStyle}
             required
           />
           <TextField
             label="Goal Description"
             id="description"
             {...register("description")}
-            sx={inputStyle}
+            multiline
           />
           <FormControlLabel
             label="Completed"
-            sx={{
-              color: "white",
-            }}
-            control={
-              <Checkbox
-                sx={{
-                  color: "white",
-                }}
-              />
-            }
+            control={<Checkbox />}
             id="completed"
             {...register("completed")}
             // checked={state}
@@ -127,6 +118,12 @@ export default function MainGoalForm() {
         </Stack>
       </form>
       <DevTool control={control} />
+      <Snackbar
+        message="Goal has been saved!"
+        autoHideDuration={3000}
+        open={snackIsOpen}
+        onClose={closeSnack}
+      />
     </Modal>
   );
 }

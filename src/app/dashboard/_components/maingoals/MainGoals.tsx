@@ -37,7 +37,7 @@ export default function MainGoals() {
       }
     };
     getMainGoals();
-  }, [id]);
+  }, [id, mainGoalIsOpen]);
 
   const handleAddMainGoal = () => {
     console.log("button clicked!");
@@ -64,7 +64,7 @@ export default function MainGoals() {
           </Button>
         ))}
       <PlusButton onClick={handleAddMainGoal} ariaLabel="add a new main goal" />
-      {mainGoalIsOpen && <MainGoalForm />}
+      <MainGoalForm />
     </Stack>
   );
 }
