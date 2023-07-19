@@ -11,7 +11,7 @@ import MainGoalForm from "@/mui-components/MainGoalForm";
 export default function MainGoals() {
   const dispatch = useDispatch<AppDispatch>();
   const { mainGoals } = useTypedSelector((state) => state.mainGoals);
-  const { mainGoalsOpen } = useTypedSelector((state) => state.modal);
+  const { mainGoalIsOpen } = useTypedSelector((state) => state.modal);
   const { id } = useTypedSelector((state) => state.user);
 
   useEffect(() => {
@@ -41,8 +41,7 @@ export default function MainGoals() {
 
   const handleAddMainGoal = () => {
     console.log("button clicked!");
-    dispatch(openMainGoals);
-    console.log(mainGoalsOpen);
+    dispatch(openMainGoals());
   };
 
   return (
@@ -65,7 +64,7 @@ export default function MainGoals() {
           </Button>
         ))}
       <PlusButton onClick={handleAddMainGoal} ariaLabel="add a new main goal" />
-      {mainGoalsOpen && <MainGoalForm />}
+      {mainGoalIsOpen && <MainGoalForm />}
     </Stack>
   );
 }

@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 type State = {
-  mainGoalsOpen: boolean;
+  mainGoalIsOpen: boolean;
 };
 
 const initialState: State = {
-  mainGoalsOpen: true,
+  mainGoalIsOpen: false,
 };
 
 export const modalSlice = createSlice({
@@ -14,7 +14,7 @@ export const modalSlice = createSlice({
   reducers: {
     closeModal: () => initialState,
     openMainGoals: (state) => {
-      state.mainGoalsOpen = true;
+      return { ...state, mainGoalIsOpen: true };
     },
   },
 });

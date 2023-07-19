@@ -6,24 +6,22 @@ import { closeModal } from "@/redux/features/modalSlice";
 
 export default function Modal({ children, dialogueTitle }) {
   const dispatch = useDispatch<AppDispatch>();
-  const { mainGoalsOpen } = useTypedSelector((state) => state.modal);
+  const { mainGoalIsOpen } = useTypedSelector((state) => state.modal);
 
   return (
     <Dialog
-      open={mainGoalsOpen}
+      open={mainGoalIsOpen}
+      onClose={() => dispatch(closeModal())}
       PaperProps={{
         sx: {
-          backgroundColor: "#111",
+          backgroundColor: "#222",
         },
       }}
       aria-label={dialogueTitle}
-      sx={{
-        backgroundColor: "rgba(255, 255, 255, 0.25)",
-      }}
     >
       <DialogContent>{children}</DialogContent>
       <DialogActions>
-        <Button onClick={() => dispatch(closeModal)}>Cancel</Button>
+        <Button onClick={() => dispatch(closeModal())}>Cancel</Button>
       </DialogActions>
     </Dialog>
   );
