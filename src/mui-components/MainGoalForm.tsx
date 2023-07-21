@@ -12,9 +12,10 @@ import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { useEffect, useState } from "react";
 import { useTypedSelector, AppDispatch } from "@/redux/store";
-import { closeModal } from "@/redux/features/modalSlice";
 import Modal from "./Modal";
-import { useDispatch } from "react-redux";
+//if we decide later we want to close on submit
+// import { closeModal } from "@/redux/features/modalSlice";
+// import { useDispatch } from "react-redux";
 
 type FormValues = {
   title: string;
@@ -25,7 +26,8 @@ type FormValues = {
 export default function MainGoalForm() {
   const [snackIsOpen, setSnackIsOpen] = useState(false);
   const { id } = useTypedSelector((state) => state.user);
-  const dispatch = useDispatch<AppDispatch>();
+  //if we decide later we want to close on submit
+  //const dispatch = useDispatch<AppDispatch>();
   const form = useForm<FormValues>({
     defaultValues: {
       completed: false,
