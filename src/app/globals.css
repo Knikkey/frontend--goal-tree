@@ -27,3 +27,14 @@ main {
 .form {
   padding: 1rem;
 }
+
+.node circle,
+.node rect {
+  fill: white;
+  stroke: black;
+}
+
+path.link {
+  fill: none;
+  stroke: red;
+}

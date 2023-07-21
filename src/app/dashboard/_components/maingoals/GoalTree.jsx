@@ -3,11 +3,9 @@ import { useEffect, useState } from "react";
 import { AnimatedTree } from "react-tree-graph";
 import { useSelector } from "react-redux";
 import { Typography } from "@mui/material";
-import { useDispatch } from "react-redux";
 
 export default function GoalTree() {
   const [goalTree, setGoalTree] = useState(null);
-  const dispatch = useDispatch();
   const { currMainGoalId } = useSelector((state) => state.mainGoals);
 
   useEffect(() => {
@@ -26,7 +24,7 @@ export default function GoalTree() {
         );
         const data = await res.json();
         console.log(data);
-        dispatch(setGoalTree(data));
+        setGoalTree(data);
       } catch (err) {
         console.log(err);
       }
@@ -39,6 +37,14 @@ export default function GoalTree() {
       <Typography variant="h6" component="span">
         {currMainGoalId}
       </Typography>
+      {goalTree && (
+        <AnimatedTree
+          data={goalTree}
+          height="500"
+          width="500"
+          textProps={{ style: { fill: "white" } }}
+        />
+      )}
     </div>
   );
 }
