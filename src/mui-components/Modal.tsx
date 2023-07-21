@@ -16,7 +16,7 @@ export default function Modal({ children, dialogueTitle }) {
     >
       <DialogContent>{children}</DialogContent>
       <DialogActions>
-        <Button onClick={() => dispatch(closeModal())}>Cancel</Button>
+        <Button onClick={() => dispatch(closeModal())}>Close</Button>
       </DialogActions>
     </Dialog>
   );
