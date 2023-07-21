@@ -8,6 +8,10 @@ export default function GoalTree() {
   const [goalTree, setGoalTree] = useState(null);
   const { currMainGoalId } = useSelector((state) => state.mainGoals);
 
+  const handleGoalClick = (e, nodeKey) => {
+    console.log(nodeKey);
+  };
+
   useEffect(() => {
     const getGoalTree = async () => {
       if (!currMainGoalId) return;
@@ -40,9 +44,15 @@ export default function GoalTree() {
       {goalTree && (
         <AnimatedTree
           data={goalTree}
-          height="500"
-          width="500"
+          height={500}
+          width={500}
           textProps={{ style: { fill: "white" } }}
+          keyProp="id"
+          gProps={{
+            onClick: (e, nodeKey) => {
+              handleGoalClick(e, nodeKey);
+            },
+          }}
         />
       )}
     </div>
