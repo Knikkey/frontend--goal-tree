@@ -5,8 +5,8 @@ import { AppDispatch, useTypedSelector } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { Button } from "@mui/material";
-import Form from "@/mui-components/MainGoalForm";
 import MainGoals from "./_components/maingoals/MainGoals";
+import GoalTree from "./_components/maingoals/GoalTree";
 
 import styles from "./dashboard.module.scss";
 
@@ -49,7 +49,7 @@ export default function page() {
         </Button>
       </div>
       <div className={styles.mainbar}>
-        <Form />
+        <GoalTree />
       </div>
     </main>
   );

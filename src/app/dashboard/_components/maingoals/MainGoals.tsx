@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch, useTypedSelector } from "@/redux/store";
-import { setMainGoals } from "@/redux/features/mainGoalsSlice";
+import { setMainGoals, setCurrMainGoal } from "@/redux/features/mainGoalsSlice";
 import { Button, Stack, Typography } from "@mui/material";
 import PlusButton from "@/mui-components/PlusButton";
 import { openMainGoals } from "@/redux/features/modalSlice";
@@ -44,6 +44,12 @@ export default function MainGoals() {
     dispatch(openMainGoals());
   };
 
+  const handleTreeRender = (e: React.MouseEvent<HTMLElement>) => {
+    const target = e.currentTarget as HTMLButtonElement;
+    dispatch(setCurrMainGoal(target.id));
+    console.log(target.id);
+  };
+
   return (
     <Stack spacing={2}>
       {mainGoals &&
@@ -57,6 +63,7 @@ export default function MainGoals() {
             }}
             variant="contained"
             color="secondary"
+            onClick={(e) => handleTreeRender(e)}
           >
             <Typography variant="h6" component="span">
               {goal.title}
