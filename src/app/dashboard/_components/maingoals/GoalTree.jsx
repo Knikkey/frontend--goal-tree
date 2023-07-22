@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import { AnimatedTree } from "react-tree-graph";
 import { useSelector } from "react-redux";
-import { Typography } from "@mui/material";
 
 export default function GoalTree() {
   const [goalTree, setGoalTree] = useState(null);
@@ -38,9 +37,6 @@ export default function GoalTree() {
 
   return (
     <div>
-      <Typography variant="h6" component="span">
-        {currMainGoalId}
-      </Typography>
       {goalTree && (
         <AnimatedTree
           data={goalTree}
