@@ -71,7 +71,7 @@ export default function MainGoals() {
           </Button>
         ))}
       <PlusButton onClick={handleAddMainGoal} ariaLabel="add a new main goal" />
-      <MainGoalForm />
+      {mainGoalIsOpen && <MainGoalForm />}
     </Stack>
   );
 }
