@@ -2,12 +2,14 @@
 import { useEffect, useState } from "react";
 import { AnimatedTree } from "react-tree-graph";
 import { useSelector } from "react-redux";
-import { setCurrentGoal } from "@/redux/features/goalsSlice";
 import { useDispatch } from "react-redux";
+import { setCurrentGoal } from "@/redux/features/goalsSlice";
+import { openGoalCard } from "@/redux/features/modalSlice";
 
 export default function GoalTree() {
   const [goalTree, setGoalTree] = useState(null);
   const { currMainGoalId } = useSelector((state) => state.goals);
+  const { goalCardIsOpen } = useSelector((state) => state.modal);
   const dispatch = useDispatch();
 
   const handleGoalClick = async (e, nodeKey) => {
@@ -16,6 +18,7 @@ export default function GoalTree() {
     );
     const data = await response.json();
     dispatch(setCurrentGoal(data));
+    dispatch(openGoalCard());
   };
 
   useEffect(() => {
@@ -57,6 +60,7 @@ export default function GoalTree() {
           }}
         />
       )}
+      {goalCardIsOpen && <p>Goal card opens!</p>}
     </div>
   );
 }

@@ -26,5 +26,5 @@ export const modalSlice = createSlice({
   },
 });
 
-export const { closeModal, openMainGoals } = modalSlice.actions;
+export const { closeModal, openMainGoals, openGoalCard } = modalSlice.actions;
 export default modalSlice.reducer;
