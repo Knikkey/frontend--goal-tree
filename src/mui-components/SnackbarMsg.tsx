@@ -1,6 +1,5 @@
 import { Snackbar } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { AppDispatch, useTypedSelector } from "@/redux/store";
+import { useTypedSelector } from "@/redux/store";
 import { closeSnack } from "@/redux/features/snackbarSlice";
 
 type Prop = {
