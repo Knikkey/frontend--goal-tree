@@ -10,12 +10,14 @@ import {
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useTypedSelector, AppDispatch } from "@/redux/store";
 import Modal from "./Modal";
+import SnackbarMsg from "./SnackbarMsg";
+import { setSnackOpen } from "@/redux/features/snackbarSlice";
+import { useDispatch } from "react-redux";
 //if we decide later we want to close on submit
 // import { closeModal } from "@/redux/features/modalSlice";
-// import { useDispatch } from "react-redux";
 
 type FormValues = {
   title: string;
@@ -24,10 +26,9 @@ type FormValues = {
 };
 
 export default function MainGoalForm() {
-  const [snackIsOpen, setSnackIsOpen] = useState(false);
   const { id } = useTypedSelector((state) => state.user);
   //if we decide later we want to close on submit
-  //const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<AppDispatch>();
   const form = useForm<FormValues>({
     defaultValues: {
       completed: false,
@@ -50,7 +51,7 @@ export default function MainGoalForm() {
         body: JSON.stringify(newGoal),
       });
       const results = await res.json();
-      setSnackIsOpen(true);
+      dispatch(setSnackOpen(true));
       //if we decide later we want to close on submit
       //dispatch(closeModal());
       console.log("success", results);
@@ -58,13 +59,6 @@ export default function MainGoalForm() {
     } catch (err) {
       console.log(err);
     }
-  };
-
-  const closeSnack = (_, reason: string) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setSnackIsOpen(false);
   };
 
   useEffect(() => {
@@ -118,12 +112,7 @@ export default function MainGoalForm() {
         </Stack>
       </form>
       <DevTool control={control} />
-      <Snackbar
-        message="Goal has been saved!"
-        autoHideDuration={3000}
-        open={snackIsOpen}
-        onClose={closeSnack}
-      />
+      <SnackbarMsg message="Goal has been saved!" />
     </Modal>
   );
 }
