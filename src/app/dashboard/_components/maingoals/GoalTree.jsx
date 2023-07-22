@@ -7,8 +7,11 @@ export default function GoalTree() {
   const [goalTree, setGoalTree] = useState(null);
   const { currMainGoalId } = useSelector((state) => state.mainGoals);
 
-  const handleGoalClick = (e, nodeKey) => {
-    console.log(nodeKey);
+  const handleGoalClick = async (e, nodeKey) => {
+    const response = await fetch(
+      `http://localhost:5000/dashboard/goals/${nodeKey}`
+    );
+    const data = await response.json();
   };
 
   useEffect(() => {
@@ -26,7 +29,6 @@ export default function GoalTree() {
           }
         );
         const data = await res.json();
-        console.log(data);
         setGoalTree(data);
       } catch (err) {
         console.log(err);
