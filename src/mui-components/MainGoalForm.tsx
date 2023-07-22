@@ -97,8 +97,6 @@ export default function MainGoalForm() {
             control={<Checkbox />}
             id="completed"
             {...register("completed")}
-            // checked={state}
-            // onChange={handleCompleted}
           />
           <Stack spacing={2} direction="row" justifyContent="end">
             <Button
