@@ -19,8 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ReduxProvider>
-          {/* <ColorThemeProvider>{children}</ColorThemeProvider> */}
-          {children}
+          <ColorThemeProvider>{children}</ColorThemeProvider>
         </ReduxProvider>
       </body>
     </html>
