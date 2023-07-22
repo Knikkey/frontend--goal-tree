@@ -2,17 +2,20 @@
 import { useEffect, useState } from "react";
 import { AnimatedTree } from "react-tree-graph";
 import { useSelector } from "react-redux";
+import { setCurrentGoal } from "@/redux/features/goalsSlice";
+import { useDispatch } from "react-redux";
 
 export default function GoalTree() {
   const [goalTree, setGoalTree] = useState(null);
-  const { currMainGoalId } = useSelector((state) => state.goals);
+  const { currMainGoalId, currentGoal } = useSelector((state) => state.goals);
+  const dispatch = useDispatch();
 
   const handleGoalClick = async (e, nodeKey) => {
     const response = await fetch(
       `http://localhost:5000/dashboard/goals/${nodeKey}`
     );
     const data = await response.json();
-    console.log("goal data:", data);
+    dispatch(setCurrentGoal(data));
   };
 
   useEffect(() => {

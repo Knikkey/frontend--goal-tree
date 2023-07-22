@@ -1,18 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-type GoalsType = {
+type MainGoalsType = {
   id: string;
   title: string;
 };
 
+type GoalObj = {
+  completed: boolean;
+  createdAt: string;
+  deadline: null | string;
+  description: string;
+  id: string;
+  masterGoalId: null;
+  ownerId: string;
+  parentGoalId: null;
+  title: string;
+  updatedAt: string;
+};
+
 type State = {
-  mainGoals: GoalsType[] | null;
+  mainGoals: MainGoalsType[] | null;
   currMainGoalId: string | null;
+  currentGoal: GoalObj | null;
 };
 
 const initialState: State = {
   mainGoals: null,
   currMainGoalId: null,
+  currentGoal: null,
 };
 
 export const goalsSlice = createSlice({
@@ -31,8 +46,15 @@ export const goalsSlice = createSlice({
         currMainGoalId: action.payload,
       };
     },
+    setCurrentGoal: (state, action) => {
+      return {
+        ...state,
+        currentGoal: action.payload,
+      };
+    },
   },
 });
 
-export const { setMainGoals, setCurrMainGoal } = goalsSlice.actions;
+export const { setMainGoals, setCurrMainGoal, setCurrentGoal } =
+  goalsSlice.actions;
 export default goalsSlice.reducer;
