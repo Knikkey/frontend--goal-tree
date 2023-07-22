@@ -5,13 +5,13 @@ import { AppDispatch, useTypedSelector } from "@/redux/store";
 import { setMainGoals, setCurrMainGoal } from "@/redux/features/mainGoalsSlice";
 import { Button, Stack, Typography } from "@mui/material";
 import PlusButton from "@/mui-components/PlusButton";
-import { openModal } from "@/redux/features/modalSlice";
+import { openMainGoals } from "@/redux/features/modalSlice";
 import MainGoalForm from "@/mui-components/MainGoalForm";
 
 export default function MainGoals() {
   const dispatch = useDispatch<AppDispatch>();
   const { mainGoals } = useTypedSelector((state) => state.mainGoals);
-  const { modalIsOpen } = useTypedSelector((state) => state.modal);
+  const { mainGoalIsOpen } = useTypedSelector((state) => state.modal);
   const { id } = useTypedSelector((state) => state.user);
 
   useEffect(() => {
@@ -37,11 +37,11 @@ export default function MainGoals() {
       }
     };
     getMainGoals();
-  }, [id, modalIsOpen]);
+  }, [id, mainGoalIsOpen]);
 
   const handleAddMainGoal = () => {
     console.log("button clicked!");
-    dispatch(openModal());
+    dispatch(openMainGoals());
   };
 
   const handleTreeRender = (e: React.MouseEvent<HTMLElement>) => {
