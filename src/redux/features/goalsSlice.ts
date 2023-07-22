@@ -15,7 +15,7 @@ const initialState: State = {
   currMainGoalId: null,
 };
 
-export const mainGoalsSlice = createSlice({
+export const goalsSlice = createSlice({
   name: "main goals",
   initialState,
   reducers: {
@@ -34,5 +34,5 @@ export const mainGoalsSlice = createSlice({
   },
 });
 
-export const { setMainGoals, setCurrMainGoal } = mainGoalsSlice.actions;
-export default mainGoalsSlice.reducer;
+export const { setMainGoals, setCurrMainGoal } = goalsSlice.actions;
+export default goalsSlice.reducer;

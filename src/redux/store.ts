@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import mainGoalsReducer from "./features/mainGoalsSlice";
+import goalsReducer from "./features/goalsSlice";
 import userReducer from "./features/userSlice";
 import modalSliceReducer from "./features/modalSlice";
 import snackbarSliceReducer from "./features/snackbarSlice";
@@ -8,7 +8,7 @@ import { TypedUseSelectorHook, useSelector } from "react-redux";
 export const store = configureStore({
   reducer: {
     user: userReducer,
-    mainGoals: mainGoalsReducer,
+    goals: goalsReducer,
     modal: modalSliceReducer,
     snackbar: snackbarSliceReducer,
   },

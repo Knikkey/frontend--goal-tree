@@ -5,13 +5,14 @@ import { useSelector } from "react-redux";
 
 export default function GoalTree() {
   const [goalTree, setGoalTree] = useState(null);
-  const { currMainGoalId } = useSelector((state) => state.mainGoals);
+  const { currMainGoalId } = useSelector((state) => state.goals);
 
   const handleGoalClick = async (e, nodeKey) => {
     const response = await fetch(
       `http://localhost:5000/dashboard/goals/${nodeKey}`
     );
     const data = await response.json();
+    console.log("goal data:", data);
   };
 
   useEffect(() => {
