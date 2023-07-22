@@ -6,11 +6,11 @@ import { closeModal } from "@/redux/features/modalSlice";
 
 export default function Modal({ children, dialogueTitle }) {
   const dispatch = useDispatch<AppDispatch>();
-  const { mainGoalIsOpen } = useTypedSelector((state) => state.modal);
+  const { modalIsOpen } = useTypedSelector((state) => state.modal);
 
   return (
     <Dialog
-      open={mainGoalIsOpen}
+      open={modalIsOpen}
       onClose={() => dispatch(closeModal())}
       aria-label={dialogueTitle}
     >
