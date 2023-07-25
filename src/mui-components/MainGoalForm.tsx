@@ -6,7 +6,6 @@ import {
   Typography,
   Button,
   Stack,
-  Snackbar,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
@@ -17,7 +16,7 @@ import SnackbarMsg from "./SnackbarMsg";
 import { setSnackOpen } from "@/redux/features/snackbarSlice";
 import { useDispatch } from "react-redux";
 //if we decide later we want to close on submit
-// import { closeModal } from "@/redux/features/modalSlice";
+import { closeModal } from "@/redux/features/modalSlice";
 
 type FormValues = {
   title: string;
@@ -53,7 +52,7 @@ export default function MainGoalForm() {
       const results = await res.json();
       dispatch(setSnackOpen(true));
       //if we decide later we want to close on submit
-      //dispatch(closeModal());
+      dispatch(closeModal());
       console.log("success", results);
       return results;
     } catch (err) {
