@@ -19,6 +19,7 @@ export default function GoalTree() {
     const data = await response.json();
     dispatch(setCurrentGoal(data));
     dispatch(openGoalCard());
+    console.log(data);
   };
 
   useEffect(() => {
