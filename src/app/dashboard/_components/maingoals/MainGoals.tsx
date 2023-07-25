@@ -6,12 +6,14 @@ import { setMainGoals, setCurrMainGoal } from "@/redux/features/goalsSlice";
 import { Button, Stack, Typography } from "@mui/material";
 import PlusButton from "@/mui-components/PlusButton";
 import { openMainGoals } from "@/redux/features/modalSlice";
-import MainGoalForm from "@/mui-components/MainGoalForm";
+import MainGoalForm from "@/app/dashboard/_components/maingoals/MainGoalForm";
 
 export default function MainGoals() {
   const dispatch = useDispatch<AppDispatch>();
   const { mainGoals } = useTypedSelector((state) => state.goals);
-  const { mainGoalIsOpen } = useTypedSelector((state) => state.modal);
+  const { mainGoalIsOpen, modalIsOpen } = useTypedSelector(
+    (state) => state.modal
+  );
   const { id } = useTypedSelector((state) => state.user);
 
   useEffect(() => {
@@ -37,7 +39,7 @@ export default function MainGoals() {
       }
     };
     getMainGoals();
-  }, [id, mainGoalIsOpen]);
+  }, [id, modalIsOpen]);
 
   const handleAddMainGoal = () => {
     console.log("button clicked!");

@@ -1,11 +1,9 @@
 "use client";
-
 import { useTypedSelector, AppDispatch } from "@/redux/store";
-import Modal from "./Modal";
-import { setSnackOpen } from "@/redux/features/snackbarSlice";
+import Modal from "../../../../mui-components/Modal";
 import { useDispatch } from "react-redux";
 import { closeModal } from "@/redux/features/modalSlice";
-import MuiForm from "./MuiForm";
+import MuiForm from "../../../../mui-components/MuiForm";
 
 type FormValues = {
   title: string;
@@ -29,7 +27,6 @@ export default function MainGoalForm() {
         body: JSON.stringify(newGoal),
       });
       const results = await res.json();
-      dispatch(setSnackOpen(true));
       dispatch(closeModal());
       console.log("success", results);
       return results;

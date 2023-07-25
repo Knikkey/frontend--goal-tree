@@ -13,14 +13,20 @@ import { useEffect } from "react";
 
 type Props = {
   onSubmit: (data: FormValues) => any;
-  goal?: FormSettings;
+  goal?: GoalObj | null;
 };
 
-type FormSettings = {
-  formTitle: string;
-  title?: string;
-  description?: string;
-  completed?: boolean;
+type GoalObj = {
+  completed: boolean;
+  createdAt: string;
+  deadline: null | string;
+  description: string;
+  id: string;
+  masterGoalId: null;
+  ownerId: string;
+  parentGoalId: null;
+  title: string;
+  updatedAt: string;
 };
 
 type FormValues = {
@@ -63,7 +69,7 @@ export default function MuiForm({ onSubmit, goal }: Props) {
       <form className="form" onSubmit={handleSubmit(onSubmit)} noValidate>
         <Stack spacing={2}>
           <Typography variant="h4" component="h2">
-            {goal ? goal.formTitle : "Create New Goal"}
+            {goal ? goal.title : "Create New Goal"}
           </Typography>
           <TextField
             label="Goal Title"
