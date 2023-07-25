@@ -13,7 +13,7 @@ import { useEffect } from "react";
 
 type Props = {
   onSubmit: (data: FormValues) => any;
-  goal: FormSettings;
+  goal?: FormSettings;
 };
 
 type FormSettings = {
@@ -35,7 +35,7 @@ type DefaultValues = {
   completed?: boolean;
 };
 
-export default function Form({ onSubmit, goal }: Props) {
+export default function MuiForm({ onSubmit, goal }: Props) {
   const defaultValues: DefaultValues = {
     description: null,
     completed: false,
@@ -63,7 +63,7 @@ export default function Form({ onSubmit, goal }: Props) {
       <form className="form" onSubmit={handleSubmit(onSubmit)} noValidate>
         <Stack spacing={2}>
           <Typography variant="h4" component="h2">
-            {goal.formTitle}
+            {goal ? goal.formTitle : "Create New Goal"}
           </Typography>
           <TextField
             label="Goal Title"

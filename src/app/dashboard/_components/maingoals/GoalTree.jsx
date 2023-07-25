@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setCurrentGoal } from "@/redux/features/goalsSlice";
 import { openGoalCard } from "@/redux/features/modalSlice";
+import Modal from "@/mui-components/Modal";
 
 export default function GoalTree() {
   const [goalTree, setGoalTree] = useState(null);
@@ -61,7 +62,11 @@ export default function GoalTree() {
           }}
         />
       )}
-      {goalCardIsOpen && <p>Goal card opens!</p>}
+      {goalCardIsOpen && (
+        <Modal>
+          <p>Test Modal for {currMainGoalId}</p>
+        </Modal>
+      )}
     </div>
   );
 }

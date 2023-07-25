@@ -13,7 +13,7 @@ export const snackbarSlice = createSlice({
   initialState,
   reducers: {
     closeSnack: (state, action) => {
-      return initialState;
+      return { snackIsOpen: false };
     },
     setSnackOpen: (state, action) => {
       return {
