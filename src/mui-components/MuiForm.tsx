@@ -75,8 +75,16 @@ export default function MuiForm({ onSubmit, goal, isEdit }: Props) {
           <TextField
             label="Goal Title"
             id="title"
-            {...register("title", { required: "Please name your goal" })}
+            {...register("title", {
+              required: "Please name your goal",
+              maxLength: {
+                value: 22,
+                message: "Title cannot be longer than 22 characters",
+              },
+            })}
+            aria-invalid={errors.title ? "true" : "false"}
             error={!!errors.title}
+            // helperText={errors.title?.message}
             helperText={errors.title?.message}
             InputProps={{
               readOnly: !isEdit,
