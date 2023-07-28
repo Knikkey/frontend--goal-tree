@@ -28,7 +28,7 @@ export default function MainGoalForm() {
     const newGoal: Goal = { ...data, ownerId: id! };
     if (currentGoal) newGoal.parentGoalId = currentGoal.id;
     try {
-      const res = await fetch(`http://localhost:5000/dashboard/main-goals/`, {
+      const res = await fetch(`http://localhost:5000/dashboard/goals/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=UTF-8",
