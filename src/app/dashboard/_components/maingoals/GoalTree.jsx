@@ -10,9 +10,7 @@ import GoalCard from "./GoalCard";
 export default function GoalTree() {
   const [goalTree, setGoalTree] = useState(null);
   const { currMainGoalId, currentGoal } = useSelector((state) => state.goals);
-  const { goalCardIsOpen, childGoalIsOpen } = useSelector(
-    (state) => state.modal
-  );
+  const { goalCardIsOpen } = useSelector((state) => state.modal);
   const dispatch = useDispatch();
 
   const handleGoalClick = async (e, nodeKey) => {
@@ -47,7 +45,7 @@ export default function GoalTree() {
       }
     };
     getGoalTree();
-  }, [currMainGoalId]);
+  }, [currMainGoalId, goalCardIsOpen]);
 
   return (
     <div>
@@ -55,8 +53,13 @@ export default function GoalTree() {
         <AnimatedTree
           data={goalTree}
           height={500}
-          width={500}
-          textProps={{ style: { fill: "white" } }}
+          width={800}
+          textProps={{
+            style: { fill: "white" },
+            dy: -15,
+            textAnchor: "middle",
+          }}
+          margins={{ bottom: 10, left: 100, right: 150, top: 10 }}
           keyProp="id"
           gProps={{
             onClick: (e, nodeKey) => {
