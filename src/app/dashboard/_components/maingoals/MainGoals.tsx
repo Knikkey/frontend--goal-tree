@@ -2,7 +2,11 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch, useTypedSelector } from "@/redux/store";
-import { setMainGoals, setCurrMainGoal } from "@/redux/features/goalsSlice";
+import {
+  setMainGoals,
+  setCurrMainGoal,
+  setCurrentGoal,
+} from "@/redux/features/goalsSlice";
 import { Button, Stack, Typography } from "@mui/material";
 import PlusButton from "@/mui-components/PlusButton";
 import { openMainGoals } from "@/redux/features/modalSlice";
@@ -44,6 +48,7 @@ export default function MainGoals() {
   const handleAddMainGoal = () => {
     console.log("opening main goals");
     dispatch(openMainGoals());
+    dispatch(setCurrentGoal(null));
   };
 
   const handleTreeRender = (e: React.MouseEvent<HTMLElement>) => {
