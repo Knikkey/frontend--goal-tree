@@ -7,13 +7,14 @@ import {
   Button,
   Stack,
 } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 type Props = {
   onSubmit: (data: FormValues) => any;
   goal?: GoalObj | null;
+  isEdit?: boolean;
 };
 
 type GoalObj = {
@@ -41,7 +42,7 @@ type DefaultValues = {
   completed?: boolean;
 };
 
-export default function MuiForm({ onSubmit, goal }: Props) {
+export default function MuiForm({ onSubmit, goal, isEdit }: Props) {
   const defaultValues: DefaultValues = {
     description: null,
     completed: false,
@@ -77,6 +78,9 @@ export default function MuiForm({ onSubmit, goal }: Props) {
             {...register("title", { required: "Please name your goal" })}
             error={!!errors.title}
             helperText={errors.title?.message}
+            InputProps={{
+              readOnly: !isEdit,
+            }}
             required
           />
           <TextField
@@ -84,30 +88,45 @@ export default function MuiForm({ onSubmit, goal }: Props) {
             id="description"
             {...register("description")}
             multiline
+            InputProps={{
+              readOnly: !isEdit,
+            }}
           />
           <FormControlLabel
             label="Completed"
-            control={<Checkbox />}
+            // control={<Checkbox disabled={!isEdit} />}
+            control={
+              <Controller
+                name="completed"
+                control={control}
+                rules={{ required: true }}
+                render={({ field: { value, ...field } }) => (
+                  <Checkbox {...field} checked={!!value} disabled={!isEdit} />
+                )}
+              />
+            }
             id="completed"
             {...register("completed")}
           />
-          <Stack spacing={2} direction="row" justifyContent="end">
-            <Button
-              variant="outlined"
-              onClick={() => reset()}
-              disabled={isSubmitting}
-            >
-              Reset
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              disabled={isSubmitting}
-            >
-              Submit
-            </Button>
-          </Stack>
+          {isEdit && (
+            <Stack spacing={2} direction="row" justifyContent="end">
+              <Button
+                variant="outlined"
+                onClick={() => reset()}
+                disabled={isSubmitting}
+              >
+                Reset
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                disabled={isSubmitting}
+              >
+                Submit
+              </Button>
+            </Stack>
+          )}
         </Stack>
       </form>
       <DevTool control={control} />

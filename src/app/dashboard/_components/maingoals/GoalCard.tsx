@@ -4,6 +4,8 @@ import Modal from "../../../../mui-components/Modal";
 import { useDispatch } from "react-redux";
 import { closeModal } from "@/redux/features/modalSlice";
 import MuiForm from "../../../../mui-components/MuiForm";
+import { Button, Stack } from "@mui/material";
+import { useState } from "react";
 
 type FormValues = {
   title: string;
@@ -12,6 +14,7 @@ type FormValues = {
 };
 
 export default function GoalCard() {
+  const [isEdit, setIsEdit] = useState(false);
   const { currentGoal } = useTypedSelector((state) => state.goals);
   const dispatch = useDispatch<AppDispatch>();
 
@@ -39,7 +42,17 @@ export default function GoalCard() {
   };
   return (
     <Modal dialogueTitle={currentGoal?.title}>
-      <MuiForm onSubmit={onSubmit} goal={currentGoal} />
+      <MuiForm onSubmit={onSubmit} goal={currentGoal} isEdit={isEdit} />
+      {!isEdit && (
+        <Stack spacing={2} direction="row" justifyContent="end">
+          <Button variant="outlined" onClick={() => setIsEdit(true)}>
+            Edit Goal
+          </Button>
+          <Button variant="contained" color="primary" type="submit">
+            Add Child Goal
+          </Button>
+        </Stack>
+      )}
     </Modal>
   );
 }
