@@ -94,12 +94,10 @@ export default function MuiForm({ onSubmit, goal, isEdit }: Props) {
           />
           <FormControlLabel
             label="Completed"
-            // control={<Checkbox disabled={!isEdit} />}
             control={
               <Controller
                 name="completed"
                 control={control}
-                rules={{ required: true }}
                 render={({ field: { value, ...field } }) => (
                   <Checkbox {...field} checked={!!value} disabled={!isEdit} />
                 )}

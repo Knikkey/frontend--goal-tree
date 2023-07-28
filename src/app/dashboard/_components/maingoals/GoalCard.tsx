@@ -2,7 +2,7 @@
 import { useTypedSelector, AppDispatch } from "@/redux/store";
 import Modal from "../../../../mui-components/Modal";
 import { useDispatch } from "react-redux";
-import { closeModal } from "@/redux/features/modalSlice";
+import { closeModal, openMainGoals } from "@/redux/features/modalSlice";
 import MuiForm from "../../../../mui-components/MuiForm";
 import { Button, Stack } from "@mui/material";
 import { useState } from "react";
@@ -40,6 +40,11 @@ export default function GoalCard() {
       console.log(err);
     }
   };
+
+  const addNewGoalHandler = () => {
+    dispatch(openMainGoals());
+  };
+
   return (
     <Modal dialogueTitle={currentGoal?.title}>
       <MuiForm onSubmit={onSubmit} goal={currentGoal} isEdit={isEdit} />
@@ -48,7 +53,11 @@ export default function GoalCard() {
           <Button variant="outlined" onClick={() => setIsEdit(true)}>
             Edit Goal
           </Button>
-          <Button variant="contained" color="primary" type="submit">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={addNewGoalHandler}
+          >
             Add Child Goal
           </Button>
         </Stack>

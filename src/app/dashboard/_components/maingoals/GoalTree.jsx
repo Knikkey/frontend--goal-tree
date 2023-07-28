@@ -5,14 +5,14 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setCurrentGoal } from "@/redux/features/goalsSlice";
 import { openGoalCard } from "@/redux/features/modalSlice";
-import Modal from "@/mui-components/Modal";
-import MuiForm from "@/mui-components/MuiForm";
 import GoalCard from "./GoalCard";
 
 export default function GoalTree() {
   const [goalTree, setGoalTree] = useState(null);
   const { currMainGoalId, currentGoal } = useSelector((state) => state.goals);
-  const { goalCardIsOpen } = useSelector((state) => state.modal);
+  const { goalCardIsOpen, childGoalIsOpen } = useSelector(
+    (state) => state.modal
+  );
   const dispatch = useDispatch();
 
   const handleGoalClick = async (e, nodeKey) => {
@@ -41,6 +41,7 @@ export default function GoalTree() {
         );
         const data = await res.json();
         setGoalTree(data);
+        console.log(data);
       } catch (err) {
         console.log(err);
       }

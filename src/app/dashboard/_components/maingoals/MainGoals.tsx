@@ -42,7 +42,7 @@ export default function MainGoals() {
   }, [id, modalIsOpen]);
 
   const handleAddMainGoal = () => {
-    console.log("button clicked!");
+    console.log("opening main goals");
     dispatch(openMainGoals());
   };
 

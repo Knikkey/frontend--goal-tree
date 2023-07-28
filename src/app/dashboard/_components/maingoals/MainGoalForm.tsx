@@ -11,12 +11,22 @@ type FormValues = {
   completed: boolean;
 };
 
+type Goal = {
+  title: string;
+  description: string | null;
+  completed: boolean;
+  ownerId: string;
+  parentGoalId?: string;
+};
+
 export default function MainGoalForm() {
   const { id } = useTypedSelector((state) => state.user);
+  const { currentGoal } = useTypedSelector((state) => state.goals);
   const dispatch = useDispatch<AppDispatch>();
 
   const onSubmit = async (data: FormValues) => {
-    const newGoal = { ...data, ownerId: id, masterGoal: true };
+    const newGoal: Goal = { ...data, ownerId: id! };
+    if (currentGoal) newGoal.parentGoalId = currentGoal.id;
     try {
       const res = await fetch(`http://localhost:5000/dashboard/main-goals/`, {
         method: "POST",
@@ -37,7 +47,7 @@ export default function MainGoalForm() {
 
   return (
     <Modal dialogueTitle="Create New Goal">
-      <MuiForm onSubmit={onSubmit} />
+      <MuiForm onSubmit={onSubmit} isEdit={true} />
     </Modal>
   );
 }
