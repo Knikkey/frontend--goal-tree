@@ -4,12 +4,14 @@ type State = {
   modalIsOpen: boolean;
   mainGoalIsOpen: boolean;
   goalCardIsOpen: boolean;
+  deleteWarningisOpen: boolean;
 };
 
 const initialState: State = {
   modalIsOpen: false,
   mainGoalIsOpen: false,
   goalCardIsOpen: false,
+  deleteWarningisOpen: false,
 };
 
 export const modalSlice = createSlice({
@@ -23,8 +25,12 @@ export const modalSlice = createSlice({
     openGoalCard: (state) => {
       return { ...state, modalIsOpen: true, goalCardIsOpen: true };
     },
+    openDeleteWarning: (state) => {
+      return { ...state, modalIsOpen: true, deleteWarningisOpen: true };
+    },
   },
 });
 
-export const { closeModal, openMainGoals, openGoalCard } = modalSlice.actions;
+export const { closeModal, openMainGoals, openGoalCard, openDeleteWarning } =
+  modalSlice.actions;
 export default modalSlice.reducer;

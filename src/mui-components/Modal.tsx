@@ -14,7 +14,7 @@ export default function Modal({ children, dialogueTitle }) {
       onClose={() => dispatch(closeModal())}
       aria-label={dialogueTitle}
     >
-      <DialogContent>{children}</DialogContent>
+      <DialogContent sx={{ padding: 4 }}>{children}</DialogContent>
       <DialogActions>
         <Button onClick={() => dispatch(closeModal())}>Close</Button>
       </DialogActions>

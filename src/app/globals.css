@@ -24,10 +24,6 @@ main {
   color: white;
 }
 
-.form {
-  padding: 1rem;
-}
-
 .node circle,
 .node rect {
   fill: white;

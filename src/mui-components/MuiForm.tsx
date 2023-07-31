@@ -83,7 +83,6 @@ export default function MuiForm({ onSubmit, goal, isEdit }: Props) {
             })}
             aria-invalid={errors.title ? "true" : "false"}
             error={!!errors.title}
-            // helperText={errors.title?.message}
             helperText={errors.title?.message}
             InputProps={{
               readOnly: !isEdit,
