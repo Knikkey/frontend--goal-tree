@@ -23,7 +23,6 @@ type GoalObj = {
   deadline: null | string;
   description: string;
   id: string;
-  masterGoalId: null;
   ownerId: string;
   parentGoalId: null;
   title: string;
