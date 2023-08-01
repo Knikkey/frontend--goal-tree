@@ -1,8 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { AnimatedTree } from "react-tree-graph";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { setCurrentGoal } from "@/redux/features/goalsSlice";
 import { openGoalCard } from "@/redux/features/modalSlice";
 import GoalCard from "./GoalCard";
