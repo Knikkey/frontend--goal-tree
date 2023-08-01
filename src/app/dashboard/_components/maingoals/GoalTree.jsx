@@ -9,7 +9,7 @@ import GoalCard from "./GoalCard";
 
 export default function GoalTree() {
   const [goalTree, setGoalTree] = useState(null);
-  const { currMainGoalId, currentGoal } = useSelector((state) => state.goals);
+  const { currMainGoalId } = useSelector((state) => state.goals);
   const { goalCardIsOpen } = useSelector((state) => state.modal);
   const dispatch = useDispatch();
 
