@@ -25,6 +25,7 @@ export default function GoalTree() {
 
   useEffect(() => {
     const getGoalTree = async () => {
+      setGoalTree(null);
       if (!currMainGoalId) return;
       try {
         const res = await fetch(
