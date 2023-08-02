@@ -28,7 +28,13 @@ export default function GoalTree() {
   }, [currMainGoalId]);
 
   return (
-    <Box display="flex" alignItems="center" height="700px" width="700px">
+    <Box
+      display="flex"
+      alignItems="center"
+      height="700px"
+      width="700px"
+      // sx={{ transform: { xs: "rotate(90deg)", md: "rotate(0deg)" } }}
+    >
       {tree && !pending && (
         <AnimatedTree
           data={tree}
@@ -37,9 +43,11 @@ export default function GoalTree() {
           textProps={{
             style: { fill: "white" },
             dy: -15,
+            dx: -0.75,
             textAnchor: "middle",
+            className: "tree-text",
           }}
-          margins={{ bottom: 10, left: 100, right: 150, top: 10 }}
+          margins={{ bottom: 10, left: 120, right: 180, top: 10 }}
           keyProp="id"
           gProps={{
             onClick: (e, nodeKey) => {

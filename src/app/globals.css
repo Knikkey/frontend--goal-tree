@@ -34,3 +34,11 @@ path.link {
   fill: none;
   stroke: red;
 }
+
+/* @media (max-width: 900px) {
+  .tree-text {
+    transform: rotate(-90deg);
+    margin: 0 30px;
+    padding: 30px;
+  }
+} */
