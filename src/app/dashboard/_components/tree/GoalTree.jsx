@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setCurrentGoal, buildTree } from "@/redux/features/goalsSlice";
 import { openGoalCard } from "@/redux/features/modalSlice";
 import GoalCard from "./GoalCard";
+import { Box, CircularProgress } from "@mui/material";
 
 export default function GoalTree() {
   const { currMainGoalId, tree, pending } = useSelector((state) => state.goals);
@@ -26,7 +27,12 @@ export default function GoalTree() {
   }, [currMainGoalId]);
 
   return (
-    <div>
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      minHeight="100vh"
+    >
       {tree && !pending && (
         <AnimatedTree
           data={tree}
@@ -46,7 +52,8 @@ export default function GoalTree() {
           }}
         />
       )}
+      {pending && <CircularProgress />}
       {goalCardIsOpen && <GoalCard />}
-    </div>
+    </Box>
   );
 }
