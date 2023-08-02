@@ -39,10 +39,9 @@ export default function GoalCard() {
         }
       );
       const results = await res.json();
-      console.log("success", results);
       return results;
     } catch (err) {
-      console.log(err);
+      return err;
     }
   };
 

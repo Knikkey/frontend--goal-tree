@@ -39,14 +39,13 @@ export default function MainGoals() {
         });
         dispatch(setMainGoals(arr));
       } catch (err) {
-        console.log(err);
+        return err;
       }
     };
     getMainGoals();
   }, [id, modalIsOpen]);
 
   const handleAddMainGoal = () => {
-    console.log("opening main goals");
     dispatch(openMainGoals());
     dispatch(setCurrentGoal(null));
   };
@@ -54,7 +53,6 @@ export default function MainGoals() {
   const handleTreeRender = (e: React.MouseEvent<HTMLElement>) => {
     const target = e.currentTarget as HTMLButtonElement;
     dispatch(setCurrMainGoal(target.id));
-    console.log(target.id);
   };
 
   return (

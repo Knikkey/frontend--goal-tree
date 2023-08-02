@@ -20,10 +20,9 @@ export default function page() {
           credentials: "include",
         });
         const data = await res.json();
-        console.log(data);
         dispatch(login(data));
       } catch (err) {
-        console.log(err);
+        return err;
       }
     };
     handleLogin();

@@ -1,8 +1,6 @@
 "use client";
-import { useTypedSelector, AppDispatch } from "@/redux/store";
+import { useTypedSelector } from "@/redux/store";
 import Modal from "../../../../mui-components/Modal";
-import { useDispatch } from "react-redux";
-import { closeModal } from "@/redux/features/modalSlice";
 import MuiForm from "../../../../mui-components/MuiForm";
 
 type FormValues = {
@@ -22,7 +20,6 @@ type Goal = {
 export default function MainGoalForm() {
   const { id } = useTypedSelector((state) => state.user);
   const { currentGoal } = useTypedSelector((state) => state.goals);
-  const dispatch = useDispatch<AppDispatch>();
 
   const onSubmit = async (data: FormValues) => {
     const newGoal: Goal = { ...data, ownerId: id! };
@@ -37,11 +34,9 @@ export default function MainGoalForm() {
         body: JSON.stringify(newGoal),
       });
       const results = await res.json();
-      // dispatch(closeModal());
-      console.log("success", results);
       return results;
     } catch (err) {
-      console.log(err);
+      return err;
     }
   };
 
