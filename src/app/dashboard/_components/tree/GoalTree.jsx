@@ -34,11 +34,13 @@ export default function GoalTree() {
       justifyContent="center"
       alignItems="center"
       minHeight="100vh"
+      width="100%"
+      height="100%"
     >
       {tree && !pending && (
         <AnimatedTree
           data={tree}
-          height={500}
+          height={600}
           width={800}
           textProps={{
             style: { fill: "white" },

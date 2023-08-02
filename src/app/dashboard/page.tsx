@@ -4,11 +4,9 @@ import { login, logout } from "../../redux/features/userSlice";
 import { AppDispatch, useTypedSelector } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-import { Button } from "@mui/material";
+import { Button, Grid, Typography, Box, Stack, Divider } from "@mui/material";
 import MainGoals from "./_components/maingoals/MainGoals";
 import GoalTree from "./_components/tree/GoalTree";
-
-import styles from "./dashboard.module.scss";
 
 export default function page() {
   const dispatch = useDispatch<AppDispatch>();
@@ -40,17 +38,28 @@ export default function page() {
   };
 
   return (
-    <main className={styles.dashboard}>
-      <div className={styles.sidebar}>
-        <h1>Hello, {firstName}!</h1>
+    <Stack component="main" sx={{ padding: "1rem" }} direction="row">
+      <Stack
+        sx={{
+          height: "100%",
+          width: "30%",
+          paddingLeft: "1rem",
+          paddingRight: "2rem",
+        }}
+        spacing={2}
+      >
+        <Typography variant="h3" component="h1" align="center">
+          Hello, {firstName}
+        </Typography>
         <MainGoals />
         <Button variant="contained" color="error" onClick={handleLogout}>
           Logout
         </Button>
-      </div>
-      <div className={styles.mainbar}>
+      </Stack>
+      <Divider orientation="vertical" />
+      <Box sx={{ width: "70%" }}>
         <GoalTree />
-      </div>
-    </main>
+      </Box>
+    </Stack>
   );
 }
