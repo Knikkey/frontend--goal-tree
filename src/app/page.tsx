@@ -15,10 +15,10 @@ export default function Home() {
       justifyContent="center"
       alignItems="center"
     >
-      <Typography variant="h2" component="h1" lineHeight="0.75">
+      <Typography variant="h2" component="h1" lineHeight="0.75" align="center">
         Goal Planner
       </Typography>
-      <Typography variant="h5" component="h2">
+      <Typography variant="h5" component="h2" align="center">
         Divide and Conquor Your Goals
       </Typography>
       <Button
