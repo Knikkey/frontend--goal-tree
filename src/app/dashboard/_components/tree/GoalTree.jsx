@@ -5,10 +5,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { setCurrentGoal, buildTree } from "@/redux/features/goalsSlice";
 import { openGoalCard } from "@/redux/features/modalSlice";
 import GoalCard from "./GoalCard";
-import { Box, CircularProgress } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 
 export default function GoalTree() {
-  const { currMainGoalId, tree, pending } = useSelector((state) => state.goals);
+  const { currMainGoalId, tree, pending, error } = useSelector(
+    (state) => state.goals
+  );
   const { goalCardIsOpen } = useSelector((state) => state.modal);
   const dispatch = useDispatch();
 
@@ -53,6 +55,7 @@ export default function GoalTree() {
         />
       )}
       {pending && <CircularProgress />}
+      {error && <Typography color="error">{error}</Typography>}
       {goalCardIsOpen && <GoalCard />}
     </Box>
   );

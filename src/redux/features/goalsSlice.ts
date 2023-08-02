@@ -93,7 +93,7 @@ export const goalsSlice = createSlice({
     });
     builder.addCase(buildTree.rejected, (state, action) => {
       state.pending = false;
-      state.error = action.error.message;
+      state.error = "An error occured";
     });
   },
 });
