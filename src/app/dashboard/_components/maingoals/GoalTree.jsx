@@ -1,14 +1,13 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { AnimatedTree } from "react-tree-graph";
 import { useSelector, useDispatch } from "react-redux";
-import { setCurrentGoal } from "@/redux/features/goalsSlice";
+import { setCurrentGoal, setTree } from "@/redux/features/goalsSlice";
 import { openGoalCard } from "@/redux/features/modalSlice";
 import GoalCard from "./GoalCard";
 
 export default function GoalTree() {
-  const [goalTree, setGoalTree] = useState(null);
-  const { currMainGoalId } = useSelector((state) => state.goals);
+  const { currMainGoalId, tree } = useSelector((state) => state.goals);
   const { goalCardIsOpen } = useSelector((state) => state.modal);
   const dispatch = useDispatch();
 
@@ -24,7 +23,7 @@ export default function GoalTree() {
 
   useEffect(() => {
     const getGoalTree = async () => {
-      setGoalTree(null);
+      dispatch(setTree(null));
       if (!currMainGoalId) return;
       try {
         const res = await fetch(
@@ -38,20 +37,20 @@ export default function GoalTree() {
           }
         );
         const data = await res.json();
-        setGoalTree(data);
+        dispatch(setTree(data));
         console.log(data);
       } catch (err) {
         console.log(err);
       }
     };
     getGoalTree();
-  }, [currMainGoalId, goalCardIsOpen]);
+  }, [currMainGoalId]);
 
   return (
     <div>
-      {goalTree && (
+      {tree && (
         <AnimatedTree
-          data={goalTree}
+          data={tree}
           height={500}
           width={800}
           textProps={{

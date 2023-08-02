@@ -37,7 +37,7 @@ export default function MainGoalForm() {
         body: JSON.stringify(newGoal),
       });
       const results = await res.json();
-      dispatch(closeModal());
+      // dispatch(closeModal());
       console.log("success", results);
       return results;
     } catch (err) {

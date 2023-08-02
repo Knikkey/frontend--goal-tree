@@ -21,12 +21,14 @@ type State = {
   mainGoals: MainGoalsType[] | null;
   currMainGoalId: string | null;
   currentGoal: GoalObj | null;
+  tree: any;
 };
 
 const initialState: State = {
   mainGoals: null,
   currMainGoalId: null,
   currentGoal: null,
+  tree: null,
 };
 
 export const goalsSlice = createSlice({
@@ -51,9 +53,15 @@ export const goalsSlice = createSlice({
         currentGoal: action.payload,
       };
     },
+    setTree: (state, action) => {
+      return {
+        ...state,
+        tree: action.payload,
+      };
+    },
   },
 });
 
-export const { setMainGoals, setCurrMainGoal, setCurrentGoal } =
+export const { setMainGoals, setCurrMainGoal, setCurrentGoal, setTree } =
   goalsSlice.actions;
 export default goalsSlice.reducer;

@@ -9,7 +9,11 @@ import {
 } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch, useTypedSelector } from "@/redux/store";
+import { setTree } from "@/redux/features/goalsSlice";
+import { closeModal } from "@/redux/features/modalSlice";
 
 type Props = {
   onSubmit: (data: FormValues) => any;
@@ -42,6 +46,9 @@ type DefaultValues = {
 };
 
 export default function MuiForm({ onSubmit, goal, isEdit }: Props) {
+  const dispatch = useDispatch<AppDispatch>();
+  const { currMainGoalId } = useTypedSelector((state) => state.goals);
+
   const defaultValues: DefaultValues = {
     description: null,
     completed: false,
@@ -61,7 +68,32 @@ export default function MuiForm({ onSubmit, goal, isEdit }: Props) {
   const { errors, isSubmitting, isSubmitSuccessful } = formState;
 
   useEffect(() => {
-    if (isSubmitSuccessful) reset();
+    if (isSubmitSuccessful) {
+      const getGoalTree = async () => {
+        dispatch(setTree(null));
+        if (!currMainGoalId) return;
+        try {
+          const res = await fetch(
+            `http://localhost:5000/dashboard/build-tree/${currMainGoalId}`,
+            {
+              credentials: "include",
+              headers: {
+                "Content-Type": "application/json;charset=UTF-8",
+                Accept: "application/json",
+              },
+            }
+          );
+          const data = await res.json();
+          dispatch(setTree(data));
+          console.log(data);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      getGoalTree();
+      reset();
+      dispatch(closeModal());
+    }
   }, [isSubmitSuccessful, reset]);
 
   return (
