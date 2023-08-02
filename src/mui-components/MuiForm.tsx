@@ -12,7 +12,7 @@ import { DevTool } from "@hookform/devtools";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch, useTypedSelector } from "@/redux/store";
-import { setTree } from "@/redux/features/goalsSlice";
+import { buildTree } from "@/redux/features/goalsSlice";
 import { closeModal } from "@/redux/features/modalSlice";
 
 type Props = {
@@ -69,28 +69,8 @@ export default function MuiForm({ onSubmit, goal, isEdit }: Props) {
 
   useEffect(() => {
     if (isSubmitSuccessful) {
-      const getGoalTree = async () => {
-        dispatch(setTree(null));
-        if (!currMainGoalId) return;
-        try {
-          const res = await fetch(
-            `http://localhost:5000/dashboard/build-tree/${currMainGoalId}`,
-            {
-              credentials: "include",
-              headers: {
-                "Content-Type": "application/json;charset=UTF-8",
-                Accept: "application/json",
-              },
-            }
-          );
-          const data = await res.json();
-          dispatch(setTree(data));
-          console.log(data);
-        } catch (err) {
-          console.log(err);
-        }
-      };
-      getGoalTree();
+      if (!currMainGoalId) return;
+      dispatch(buildTree(currMainGoalId));
       reset();
       dispatch(closeModal());
     }

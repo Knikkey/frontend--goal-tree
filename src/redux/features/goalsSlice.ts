@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 type MainGoalsType = {
   id: string;
@@ -22,6 +22,8 @@ type State = {
   currMainGoalId: string | null;
   currentGoal: GoalObj | null;
   tree: any;
+  pending: boolean;
+  error: any;
 };
 
 const initialState: State = {
@@ -29,7 +31,29 @@ const initialState: State = {
   currMainGoalId: null,
   currentGoal: null,
   tree: null,
+  pending: false,
+  error: null,
 };
+
+export const buildTree = createAsyncThunk(
+  "goals/buildTree",
+  async (currMainGoalId: string) => {
+    console.log("we running");
+    const res = await fetch(
+      `http://localhost:5000/dashboard/build-tree/${currMainGoalId}`,
+      {
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+          Accept: "application/json",
+        },
+      }
+    );
+    const data = await res.json();
+    console.log("we ran");
+    return data;
+  }
+);
 
 export const goalsSlice = createSlice({
   name: "main goals",
@@ -59,6 +83,20 @@ export const goalsSlice = createSlice({
         tree: action.payload,
       };
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(buildTree.pending, (state) => {
+      state.pending = true;
+      state.error = null;
+    });
+    builder.addCase(buildTree.fulfilled, (state, action) => {
+      state.pending = false;
+      state.tree = action.payload;
+    });
+    builder.addCase(buildTree.rejected, (state, action) => {
+      state.pending = false;
+      state.error = action.error.message;
+    });
   },
 });
 
