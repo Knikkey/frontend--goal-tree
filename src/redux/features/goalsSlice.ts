@@ -37,7 +37,8 @@ const initialState: State = {
 
 export const buildTree = createAsyncThunk(
   "goals/buildTree",
-  async (currMainGoalId: string) => {
+  async (currMainGoalId: string | null) => {
+    if (currMainGoalId === null) return null;
     const res = await fetch(
       `http://localhost:5000/dashboard/build-tree/${currMainGoalId}`,
       {
@@ -75,12 +76,6 @@ export const goalsSlice = createSlice({
         currentGoal: action.payload,
       };
     },
-    setTree: (state, action) => {
-      return {
-        ...state,
-        tree: action.payload,
-      };
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(buildTree.pending, (state) => {
@@ -98,6 +93,6 @@ export const goalsSlice = createSlice({
   },
 });
 
-export const { setMainGoals, setCurrMainGoal, setCurrentGoal, setTree } =
+export const { setMainGoals, setCurrMainGoal, setCurrentGoal } =
   goalsSlice.actions;
 export default goalsSlice.reducer;
