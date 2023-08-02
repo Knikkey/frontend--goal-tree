@@ -38,7 +38,6 @@ const initialState: State = {
 export const buildTree = createAsyncThunk(
   "goals/buildTree",
   async (currMainGoalId: string) => {
-    console.log("we running");
     const res = await fetch(
       `http://localhost:5000/dashboard/build-tree/${currMainGoalId}`,
       {
@@ -50,7 +49,6 @@ export const buildTree = createAsyncThunk(
       }
     );
     const data = await res.json();
-    console.log("we ran");
     return data;
   }
 );
