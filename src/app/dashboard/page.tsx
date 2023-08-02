@@ -41,7 +41,7 @@ export default function page() {
       <Drawer
         variant="permanent"
         sx={{
-          width: "500px",
+          width: "400px",
           "& .MuiDrawer-paper": { boxSizing: "border-box", width: "400px" },
         }}
       >
@@ -62,7 +62,14 @@ export default function page() {
           </Button>
         </Stack>
       </Drawer>
-      <Box sx={{ width: "calc(100vw - 400px)" }}>
+      <Box
+        sx={{
+          width: "calc(100vw - 400px)",
+          overflow: "auto",
+          backgroundColor: "inherit",
+          height: "100vh",
+        }}
+      >
         <GoalTree />
       </Box>
     </Stack>

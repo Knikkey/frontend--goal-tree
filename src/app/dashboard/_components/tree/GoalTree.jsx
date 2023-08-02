@@ -28,19 +28,12 @@ export default function GoalTree() {
   }, [currMainGoalId]);
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      minHeight="100vh"
-      width="100%"
-      height="100%"
-    >
+    <Box display="flex" alignItems="center" height="700px" width="700px">
       {tree && !pending && (
         <AnimatedTree
           data={tree}
-          height={600}
-          width={800}
+          height={700}
+          width={700}
           textProps={{
             style: { fill: "white" },
             dy: -15,
