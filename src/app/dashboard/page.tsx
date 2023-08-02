@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { Button } from "@mui/material";
 import MainGoals from "./_components/maingoals/MainGoals";
-import GoalTree from "./_components/maingoals/GoalTree";
+import GoalTree from "./_components/tree/GoalTree";
 
 import styles from "./dashboard.module.scss";
 

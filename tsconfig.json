@@ -29,7 +29,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/dashboard/_components/maingoals/GoalTree.jsx"
+    "src/app/dashboard/_components/tree/GoalTree.jsx"
   ],
   "exclude": ["node_modules"]
 }
