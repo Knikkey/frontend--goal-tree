@@ -7,7 +7,7 @@ import { AppDispatch, useTypedSelector } from "@/redux/store";
 
 export default function DeleteWarning() {
   const dispatch = useDispatch<AppDispatch>();
-  const { currentGoal, currMainGoalId } = useTypedSelector(
+  const { currentGoal, currMainGoalId, mainGoals } = useTypedSelector(
     (state) => state.goals
   );
 
@@ -24,12 +24,16 @@ export default function DeleteWarning() {
         }
       );
       const results = await res.json();
-      dispatch(buildTree(currMainGoalId!));
+      const mainGoalIds = mainGoals?.map((goal) => goal.id);
+      if (mainGoalIds?.includes(currentGoal?.id as string)) {
+        dispatch(buildTree(null));
+      } else {
+        dispatch(buildTree(currMainGoalId!));
+      }
       dispatch(closeModal());
-      console.log("success", results);
       return results;
     } catch (err) {
-      console.log(err);
+      return err;
     }
   };
 
