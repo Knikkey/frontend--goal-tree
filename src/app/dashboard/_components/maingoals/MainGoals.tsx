@@ -41,6 +41,7 @@ export default function MainGoals() {
           <Button
             key={goal.id}
             id={goal.id}
+            aria-label={`render goal tree for ${goal.title}`}
             sx={{
               padding: "0.5rem 1rem",
               textTransform: "initial !important",
