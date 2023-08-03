@@ -34,6 +34,7 @@ export default function GoalTree() {
           data={tree}
           height={700}
           width={700}
+          svgProps={{ id: "tree", ariaBusy: pending }}
           textProps={{
             style: { fill: "white", cursor: "pointer" },
             dy: -15,
@@ -51,8 +52,14 @@ export default function GoalTree() {
           }}
         />
       )}
-      {pending && <CircularProgress />}
-      {error && <Typography color="error">{error}</Typography>}
+      {pending && (
+        <CircularProgress aria-describedby="tree" sx={{ margin: "0 auto" }} />
+      )}
+      {error && (
+        <Typography color="error" sx={{ margin: "0 auto" }}>
+          {error}
+        </Typography>
+      )}
       {goalCardIsOpen && <GoalCard />}
     </Box>
   );
