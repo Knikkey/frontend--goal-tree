@@ -21,7 +21,8 @@ export default function page() {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const { currMainGoalId } = useTypedSelector((state) => state.goals);
-  let firstName = useTypedSelector((state) => state.user.name)?.split(" ")[0];
+  //let firstName = useTypedSelector((state) => state.user.name)?.split(" ")[0];
+  let firstName = "asuperduperlongname I guess";
 
   const handleDrawer = () => {
     setOpenDrawer((prev) => !prev);
@@ -63,7 +64,12 @@ export default function page() {
       }}
       spacing={2}
     >
-      <Typography variant="h3" component="h1" align="center">
+      <Typography
+        variant="h3"
+        component="h1"
+        align="center"
+        sx={{ wordWrap: "break-word" }}
+      >
         Hello, {firstName}
       </Typography>
       <MainGoals />
