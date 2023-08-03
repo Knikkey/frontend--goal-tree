@@ -5,7 +5,10 @@ import { Button, Icon, Stack, Typography } from "@mui/material";
 
 export default function Home() {
   const handleLogin = async () => {
-    window.open("http://localhost:5000/auth/google", "_self");
+    window.open(
+      "https://goal-tree-by-knikkey-backend.onrender.com/auth/google",
+      "_self"
+    );
   };
 
   return (
