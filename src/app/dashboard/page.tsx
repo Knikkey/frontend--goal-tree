@@ -21,8 +21,7 @@ export default function page() {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const { currMainGoalId } = useTypedSelector((state) => state.goals);
-  //let firstName = useTypedSelector((state) => state.user.name)?.split(" ")[0];
-  let firstName = "asuperduperlongname I guess";
+  let firstName = useTypedSelector((state) => state.user.name)?.split(" ")[0];
 
   const handleDrawer = () => {
     setOpenDrawer((prev) => !prev);
