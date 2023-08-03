@@ -54,6 +54,25 @@ export default function page() {
     router.push("/");
   };
 
+  const SidebarContent = (
+    <Stack
+      sx={{
+        height: "100%",
+        padding: "2rem",
+        boxSizing: "border-box",
+      }}
+      spacing={2}
+    >
+      <Typography variant="h3" component="h1" align="center">
+        Hello, {firstName}
+      </Typography>
+      <MainGoals />
+      <Button variant="contained" color="error" onClick={handleLogout}>
+        Logout
+      </Button>
+    </Stack>
+  );
+
   return (
     <Stack component="main" direction="row">
       <IconButton
@@ -78,22 +97,7 @@ export default function page() {
           "& .MuiDrawer-paper": { boxSizing: "border-box", width: "400px" },
         }}
       >
-        <Stack
-          sx={{
-            height: "100%",
-            padding: "2rem",
-            boxSizing: "border-box",
-          }}
-          spacing={2}
-        >
-          <Typography variant="h3" component="h1" align="center">
-            Hello, {firstName}
-          </Typography>
-          <MainGoals />
-          <Button variant="contained" color="error" onClick={handleLogout}>
-            Logout
-          </Button>
-        </Stack>
+        {SidebarContent}
       </Drawer>
 
       <Drawer
@@ -106,28 +110,11 @@ export default function page() {
           "& .MuiDrawer-paper": { boxSizing: "border-box", width: "100vw" },
         }}
       >
-        <Stack
-          sx={{
-            height: "100%",
-            padding: "2rem",
-            boxSizing: "border-box",
-          }}
-          spacing={2}
-        >
-          <Typography variant="h3" component="h1" align="center">
-            Hello, {firstName}
-          </Typography>
-          <MainGoals />
-          <Button variant="contained" color="error" onClick={handleLogout}>
-            Logout
-          </Button>
-        </Stack>
+        {SidebarContent}
       </Drawer>
-
       <Box
         sx={{
           width: { sm: "100%", md: "calc(100vw - 400px)" },
-          // width: "calc(100vw - 400px)",
           overflow: "auto",
           backgroundColor: "inherit",
           height: "100vh",
