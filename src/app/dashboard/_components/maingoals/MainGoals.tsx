@@ -6,6 +6,7 @@ import {
   setCurrMainGoal,
   setCurrentGoal,
   getMainGoals,
+  buildTree,
 } from "@/redux/features/goalsSlice";
 import { openMainGoals } from "@/redux/features/modalSlice";
 import { Button, Stack, Typography } from "@mui/material";
@@ -30,6 +31,7 @@ export default function MainGoals() {
   const handleTreeRender = (e: React.MouseEvent<HTMLElement>) => {
     const target = e.currentTarget as HTMLButtonElement;
     dispatch(setCurrMainGoal(target.id));
+    dispatch(buildTree(target.id));
   };
 
   return (

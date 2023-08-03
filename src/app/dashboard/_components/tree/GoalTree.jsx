@@ -1,16 +1,13 @@
 "use client";
-import { useEffect } from "react";
 import { AnimatedTree } from "react-tree-graph";
 import { useSelector, useDispatch } from "react-redux";
-import { setCurrentGoal, buildTree } from "@/redux/features/goalsSlice";
+import { setCurrentGoal } from "@/redux/features/goalsSlice";
 import { openGoalCard } from "@/redux/features/modalSlice";
 import GoalCard from "./GoalCard";
 import { Box, CircularProgress, Typography } from "@mui/material";
 
 export default function GoalTree() {
-  const { currMainGoalId, tree, pending, error } = useSelector(
-    (state) => state.goals
-  );
+  const { tree, pending, error } = useSelector((state) => state.goals);
   const { goalCardIsOpen } = useSelector((state) => state.modal);
   const dispatch = useDispatch();
 
@@ -22,10 +19,6 @@ export default function GoalTree() {
     dispatch(setCurrentGoal(data));
     dispatch(openGoalCard());
   };
-
-  useEffect(() => {
-    dispatch(buildTree(currMainGoalId));
-  }, [currMainGoalId]);
 
   return (
     <Box
@@ -42,7 +35,7 @@ export default function GoalTree() {
           height={700}
           width={700}
           textProps={{
-            style: { fill: "white" },
+            style: { fill: "white", cursor: "pointer" },
             dy: -15,
             dx: -0.75,
             textAnchor: "middle",
@@ -54,6 +47,7 @@ export default function GoalTree() {
             onClick: (e, nodeKey) => {
               handleGoalClick(e, nodeKey);
             },
+            style: { cursor: "pointer" },
           }}
         />
       )}
