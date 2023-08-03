@@ -25,7 +25,8 @@
     "react-hook-form": "^7.45.1",
     "react-redux": "^8.1.1",
     "react-tree-graph": "^8.0.1",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "node": "18.17.0"
   },
   "devDependencies": {
     "@hookform/devtools": "^4.3.1"
