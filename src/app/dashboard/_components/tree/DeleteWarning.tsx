@@ -1,7 +1,7 @@
 import Modal from "@/mui-components/Modal";
 import { Typography, Stack, Button } from "@mui/material";
 import { closeModal } from "@/redux/features/modalSlice";
-import { buildTree } from "@/redux/features/goalsSlice";
+import { buildTree, getMainGoals } from "@/redux/features/goalsSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch, useTypedSelector } from "@/redux/store";
 
@@ -10,6 +10,7 @@ export default function DeleteWarning() {
   const { currentGoal, currMainGoalId, mainGoals } = useTypedSelector(
     (state) => state.goals
   );
+  const { id } = useTypedSelector((state) => state.user);
 
   const deleteHandler = async () => {
     try {
@@ -27,6 +28,7 @@ export default function DeleteWarning() {
       const mainGoalIds = mainGoals?.map((goal) => goal.id);
       if (mainGoalIds?.includes(currentGoal?.id as string)) {
         dispatch(buildTree(null));
+        dispatch(getMainGoals(id!));
       } else {
         dispatch(buildTree(currMainGoalId!));
       }

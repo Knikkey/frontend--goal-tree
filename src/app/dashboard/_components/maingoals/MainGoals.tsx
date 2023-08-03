@@ -3,47 +3,24 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch, useTypedSelector } from "@/redux/store";
 import {
-  setMainGoals,
   setCurrMainGoal,
   setCurrentGoal,
+  getMainGoals,
 } from "@/redux/features/goalsSlice";
+import { openMainGoals } from "@/redux/features/modalSlice";
 import { Button, Stack, Typography } from "@mui/material";
 import PlusButton from "@/mui-components/PlusButton";
-import { openMainGoals } from "@/redux/features/modalSlice";
 import MainGoalForm from "@/app/dashboard/_components/maingoals/MainGoalForm";
 
 export default function MainGoals() {
   const dispatch = useDispatch<AppDispatch>();
   const { mainGoals } = useTypedSelector((state) => state.goals);
-  const { mainGoalIsOpen, modalIsOpen } = useTypedSelector(
-    (state) => state.modal
-  );
+  const { mainGoalIsOpen } = useTypedSelector((state) => state.modal);
   const { id } = useTypedSelector((state) => state.user);
 
   useEffect(() => {
-    const getMainGoals = async () => {
-      try {
-        const res = await fetch(
-          `http://localhost:5000/dashboard/main-goals/${id}`,
-          {
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/json;charset=UTF-8",
-              Accept: "application/json",
-            },
-          }
-        );
-        const data = await res.json();
-        const arr = data.map((goal) => {
-          return { id: goal.id, title: goal.title };
-        });
-        dispatch(setMainGoals(arr));
-      } catch (err) {
-        return err;
-      }
-    };
-    getMainGoals();
-  }, [id, modalIsOpen]);
+    dispatch(getMainGoals(id!));
+  }, [id]);
 
   const handleAddMainGoal = () => {
     dispatch(openMainGoals());

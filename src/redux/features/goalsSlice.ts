@@ -54,16 +54,31 @@ export const buildTree = createAsyncThunk(
   }
 );
 
+export const getMainGoals = createAsyncThunk(
+  "goals/getMainGoals",
+  async (id: string) => {
+    const res = await fetch(
+      `http://localhost:5000/dashboard/main-goals/${id}`,
+      {
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+          Accept: "application/json",
+        },
+      }
+    );
+    const data = await res.json();
+    const arr = data.map((goal) => {
+      return { id: goal.id, title: goal.title };
+    });
+    return arr;
+  }
+);
+
 export const goalsSlice = createSlice({
   name: "main goals",
   initialState,
   reducers: {
-    setMainGoals: (state, action) => {
-      return {
-        ...state,
-        mainGoals: action.payload,
-      };
-    },
     setCurrMainGoal: (state, action) => {
       return {
         ...state,
@@ -90,9 +105,20 @@ export const goalsSlice = createSlice({
       state.pending = false;
       state.error = "An error occured";
     });
+    builder.addCase(getMainGoals.pending, (state) => {
+      state.pending = true;
+      state.error = null;
+    });
+    builder.addCase(getMainGoals.fulfilled, (state, action) => {
+      state.pending = false;
+      state.mainGoals = action.payload;
+    });
+    builder.addCase(getMainGoals.rejected, (state, action) => {
+      state.pending = false;
+      state.error = "An error occured";
+    });
   },
 });
 
-export const { setMainGoals, setCurrMainGoal, setCurrentGoal } =
-  goalsSlice.actions;
+export const { setCurrMainGoal, setCurrentGoal } = goalsSlice.actions;
 export default goalsSlice.reducer;
