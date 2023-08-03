@@ -33,6 +33,7 @@ export default function GoalTree() {
       alignItems="center"
       height="700px"
       width="700px"
+      //style to rotate node text
       // sx={{ transform: { xs: "rotate(90deg)", md: "rotate(0deg)" } }}
     >
       {tree && !pending && (

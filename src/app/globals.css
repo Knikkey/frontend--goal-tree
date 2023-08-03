@@ -35,6 +35,7 @@ path.link {
   stroke: red;
 }
 
+/* style to rotate node text */
 /* @media (max-width: 900px) {
   .tree-text {
     transform: rotate(-90deg);
