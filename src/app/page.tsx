@@ -34,7 +34,7 @@ export default function Home() {
           },
         }}
         startIcon={
-          <Icon sx={{ height: "auto", width: "100%", display: "flex" }}>
+          <Icon sx={{ width: "100%", height: "auto", display: "flex" }}>
             <Image
               src={googleIcon}
               alt="google icon"
