@@ -35,7 +35,6 @@ export default function page() {
     const handleLogin = async () => {
       try {
         const res = await fetch(
-          // "https://goal-tree-by-knikkey-backend.onrender.com/dashboard",
           `${process.env.NEXT_PUBLIC_BACKEND_URL}/dashboard`,
           {
             credentials: "include",
@@ -52,13 +51,9 @@ export default function page() {
 
   const handleLogout = async () => {
     dispatch(logout());
-    await fetch(
-      // "https://goal-tree-by-knikkey-backend.onrender.com/auth/logout",
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/logout`,
-      {
-        credentials: "include",
-      }
-    );
+    await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/logout`, {
+      credentials: "include",
+    });
     router.push("/");
   };
 
