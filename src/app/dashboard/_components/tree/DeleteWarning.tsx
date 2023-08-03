@@ -15,7 +15,7 @@ export default function DeleteWarning() {
   const deleteHandler = async () => {
     try {
       const res = await fetch(
-        `http://localhost:5000/dashboard/goals/${currentGoal?.id}`,
+        `https://goal-tree-by-knikkey-backend.onrender.com/dashboard/goals/${currentGoal?.id}`,
         {
           method: "DELETE",
           headers: {

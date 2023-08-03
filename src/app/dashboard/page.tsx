@@ -34,9 +34,12 @@ export default function page() {
   useEffect(() => {
     const handleLogin = async () => {
       try {
-        const res = await fetch("http://localhost:5000/dashboard", {
-          credentials: "include",
-        });
+        const res = await fetch(
+          "https://goal-tree-by-knikkey-backend.onrender.com/dashboard",
+          {
+            credentials: "include",
+          }
+        );
         const data = await res.json();
         dispatch(login(data));
       } catch (err) {
@@ -48,9 +51,12 @@ export default function page() {
 
   const handleLogout = async () => {
     dispatch(logout());
-    await fetch("http://localhost:5000/auth/logout", {
-      credentials: "include",
-    });
+    await fetch(
+      "https://goal-tree-by-knikkey-backend.onrender.com/auth/logout",
+      {
+        credentials: "include",
+      }
+    );
     router.push("/");
   };
 

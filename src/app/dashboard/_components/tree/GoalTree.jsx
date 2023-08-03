@@ -13,7 +13,7 @@ export default function GoalTree() {
 
   const handleGoalClick = async (e, nodeKey) => {
     const response = await fetch(
-      `http://localhost:5000/dashboard/goals/${nodeKey}`
+      `https://goal-tree-by-knikkey-backend.onrender.com/dashboard/goals/${nodeKey}`
     );
     const data = await response.json();
     dispatch(setCurrentGoal(data));
