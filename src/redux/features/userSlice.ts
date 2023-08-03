@@ -5,7 +5,6 @@ type State = {
   id: string | null;
   provider: string | null;
   email: string | null;
-  goals?: string[] | null;
 };
 
 const initialState: State = {
@@ -13,7 +12,6 @@ const initialState: State = {
   id: null,
   provider: null,
   email: null,
-  goals: null,
 };
 
 export const userSlice = createSlice({
@@ -25,7 +23,6 @@ export const userSlice = createSlice({
       return {
         name: action.payload.name,
         id: action.payload.id,
-        goals: action.payload.goals,
         provider: action.payload.provider,
         email: action.payload.email,
       };
