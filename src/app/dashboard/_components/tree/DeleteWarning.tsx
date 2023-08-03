@@ -1,5 +1,5 @@
-import Modal from "@/mui-components/Modal";
 import { Typography, Stack, Button } from "@mui/material";
+import Modal from "@/mui-components/Modal";
 import { closeModal } from "@/redux/features/modalSlice";
 import { buildTree, getMainGoals } from "@/redux/features/goalsSlice";
 import { useDispatch } from "react-redux";
