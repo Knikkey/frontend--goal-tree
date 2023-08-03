@@ -15,7 +15,9 @@ import MainGoalForm from "@/app/dashboard/_components/maingoals/MainGoalForm";
 
 export default function MainGoals() {
   const dispatch = useDispatch<AppDispatch>();
-  const { mainGoals } = useTypedSelector((state) => state.goals);
+  const { mainGoals, currMainGoalId } = useTypedSelector(
+    (state) => state.goals
+  );
   const { mainGoalIsOpen } = useTypedSelector((state) => state.modal);
   const { id } = useTypedSelector((state) => state.user);
 
@@ -28,10 +30,12 @@ export default function MainGoals() {
     dispatch(setCurrentGoal(null));
   };
 
-  const handleTreeRender = (e: React.MouseEvent<HTMLElement>) => {
+  const handleTreeRender = async (e: React.MouseEvent<HTMLElement>) => {
     const target = e.currentTarget as HTMLButtonElement;
+    console.log(target.id, currMainGoalId);
+    if (target.id === currMainGoalId) return;
     dispatch(setCurrMainGoal(target.id));
-    dispatch(buildTree(target.id));
+    await dispatch(buildTree(target.id));
   };
 
   return (
