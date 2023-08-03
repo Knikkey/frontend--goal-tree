@@ -74,7 +74,7 @@ export default function MuiForm({ onSubmit, goal, isEdit }: Props) {
       reset();
       dispatch(closeModal());
     }
-  }, [isSubmitSuccessful, reset]);
+  }, [isSubmitSuccessful]);
 
   return (
     <>
