@@ -5,7 +5,6 @@ import { Button, Icon, Stack, Typography } from "@mui/material";
 
 export default function Home() {
   const handleLogin = async () => {
-    console.log(process.env.NEXT_PUBLIC_BACKEND_URL);
     window.open(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/google`, "_self");
   };
 

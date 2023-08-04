@@ -43,9 +43,11 @@ export default function page() {
           }
         );
         const data = await res.json();
+        console.log("data", data);
         dispatch(login(data));
       } catch (err) {
         setError(true);
+        console.log("err", err);
       }
     };
     handleLogin();
