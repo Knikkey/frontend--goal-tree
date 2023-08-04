@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { login, logout } from "../../redux/features/userSlice";
+import { login } from "../../redux/features/userSlice";
 import { AppDispatch, useTypedSelector } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
@@ -18,6 +18,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 
 export default function page() {
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [error, setError] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const { currMainGoalId } = useTypedSelector((state) => state.goals);
@@ -33,6 +34,7 @@ export default function page() {
 
   useEffect(() => {
     const handleLogin = async () => {
+      setError(false);
       try {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_BACKEND_URL}/dashboard`,
@@ -43,14 +45,13 @@ export default function page() {
         const data = await res.json();
         dispatch(login(data));
       } catch (err) {
-        return err;
+        setError(true);
       }
     };
     handleLogin();
   }, []);
 
   const handleLogout = async () => {
-    dispatch(logout());
     await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/logout`, {
       credentials: "include",
     });
@@ -81,22 +82,60 @@ export default function page() {
     </Stack>
   );
 
+  const UndefinedUserMsg = (
+    <Stack
+      spacing={2}
+      sx={{
+        height: "100%",
+        padding: "2rem",
+        boxSizing: "border-box",
+      }}
+    >
+      <Typography
+        variant="h3"
+        component="h1"
+        align="center"
+        color="error"
+        sx={{ wordWrap: "break-word" }}
+      >
+        Oh no!
+      </Typography>
+      <Typography>
+        There was a problem getting your user data. This can occur if you're
+        using a iPhone. iPhones don't like sharing cookies, but we need them to
+        work. Try turning off the Prevent Cross-Site Tracking and Block All
+        Cookies options in your Safari settings and try again. If you're not on
+        an iPhone, that's weird. Try to switch browsers or edit your cookie
+        settings.
+      </Typography>
+      <Typography>
+        Or just try again on your desktop. The app looks better that way anyway
+        :)
+      </Typography>
+      <Button variant="contained" onClick={() => router.push("/")}>
+        Return to login page
+      </Button>
+    </Stack>
+  );
+
   return (
     <Stack component="main" direction="row">
-      <IconButton
-        color="primary"
-        aria-label="open main goal menu"
-        onClick={handleDrawer}
-        sx={{
-          display: { xs: "block", md: "none" },
-          position: "absolute",
-          top: "2%",
-          left: "2%",
-          zIndex: "99999999999",
-        }}
-      >
-        <MenuIcon sx={{ height: "40px", width: "auto" }} />
-      </IconButton>
+      {!error && (
+        <IconButton
+          color="primary"
+          aria-label="open main goal menu"
+          onClick={handleDrawer}
+          sx={{
+            display: { xs: "block", md: "none" },
+            position: "absolute",
+            top: "2%",
+            left: "2%",
+            zIndex: "99999999999",
+          }}
+        >
+          <MenuIcon sx={{ height: "40px", width: "auto" }} />
+        </IconButton>
+      )}
       <Drawer
         variant="permanent"
         sx={{
@@ -105,9 +144,8 @@ export default function page() {
           "& .MuiDrawer-paper": { boxSizing: "border-box", width: "400px" },
         }}
       >
-        {SidebarContent}
+        {error ? UndefinedUserMsg : SidebarContent}
       </Drawer>
-
       <Drawer
         variant="temporary"
         open={openDrawer}
@@ -118,7 +156,7 @@ export default function page() {
           "& .MuiDrawer-paper": { boxSizing: "border-box", width: "100vw" },
         }}
       >
-        {SidebarContent}
+        {error ? UndefinedUserMsg : SidebarContent}
       </Drawer>
       <Box
         sx={{
