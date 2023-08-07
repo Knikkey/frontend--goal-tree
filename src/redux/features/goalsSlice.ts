@@ -40,7 +40,6 @@ export const buildTree = createAsyncThunk(
   async (currMainGoalId: string | null) => {
     if (currMainGoalId === null) return null;
     const res = await fetch(
-      // `https://goal-tree-by-knikkey-backend.onrender.com/dashboard/build-tree/${currMainGoalId}`,
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/dashboard/build-tree/${currMainGoalId}`,
       {
         credentials: "include",
@@ -59,7 +58,6 @@ export const getMainGoals = createAsyncThunk(
   "goals/getMainGoals",
   async (id: string) => {
     const res = await fetch(
-      // `https://goal-tree-by-knikkey-backend.onrender.com/dashboard/main-goals/${id}`,
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/dashboard/main-goals/${id}`,
       {
         credentials: "include",

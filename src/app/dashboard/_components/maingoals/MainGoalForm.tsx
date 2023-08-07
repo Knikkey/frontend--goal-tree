@@ -36,7 +36,6 @@ export default function MainGoalForm() {
     if (currentGoal) newGoal.parentGoalId = currentGoal.id;
     try {
       const res = await fetch(
-        // `https://goal-tree-by-knikkey-backend.onrender.com/dashboard/goals/`,
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/dashboard/goals/`,
         {
           method: "POST",
