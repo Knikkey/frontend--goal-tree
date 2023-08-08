@@ -1,11 +1,25 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
 import googleIcon from "./_imgs/google-icon.png";
 import { Button, Icon, Stack, Typography } from "@mui/material";
 
 export default function Home() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
   const handleLogin = async () => {
-    window.open(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/google`, "_self");
+    setError(false);
+    setLoading(true);
+    try {
+      window.open(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/google`,
+        "_self"
+      );
+    } catch (err) {
+      setLoading(false);
+      setError(true);
+    }
   };
 
   return (
@@ -24,8 +38,9 @@ export default function Home() {
       <Button
         onClick={handleLogin}
         variant="outlined"
+        disabled={loading}
         sx={{
-          color: "#111",
+          color: "#111 !important",
           backgroundColor: "#fff",
           marginTop: "1rem",
           padding: "0.75rem 1.5rem",
@@ -48,8 +63,13 @@ export default function Home() {
           </Icon>
         }
       >
-        Login With Google
+        {loading ? "Logging in..." : "Login With Google"}
       </Button>
+      {error && (
+        <Typography variant="h6" component="p" color="error">
+          An error occured
+        </Typography>
+      )}
     </Stack>
   );
 }
