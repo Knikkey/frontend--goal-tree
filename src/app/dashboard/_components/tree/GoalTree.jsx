@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { setCurrentGoal } from "@/redux/features/goalsSlice";
 import { openGoalCard } from "@/redux/features/modalSlice";
 import GoalCard from "./GoalCard";
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import LoadingSpinner from "@/mui-components/LoadingSpinner";
 
 export default function GoalTree() {
   const { tree, pending, error } = useSelector((state) => state.goals);
@@ -52,9 +53,7 @@ export default function GoalTree() {
           }}
         />
       )}
-      {pending && (
-        <CircularProgress aria-describedby="tree" sx={{ margin: "0 auto" }} />
-      )}
+      {pending && <LoadingSpinner describedby="tree" />}
       {error && (
         <Typography color="error" sx={{ margin: "0 auto" }}>
           {error}
