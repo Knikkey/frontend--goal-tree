@@ -42,6 +42,7 @@ export default function page() {
             credentials: "include",
           }
         );
+        console.log(res);
         const data = await res.json();
         console.log("data", data);
         dispatch(login(data));
@@ -103,16 +104,9 @@ export default function page() {
         Oh no!
       </Typography>
       <Typography>
-        There was a problem getting your user data. This can occur if you're
-        using a iPhone. iPhones don't like sharing cookies, but we need them to
-        work. Try turning off the Prevent Cross-Site Tracking and Block All
-        Cookies options in your Safari settings and try again. If you're not on
-        an iPhone, that's weird. Try to switch browsers or edit your cookie
-        settings.
-      </Typography>
-      <Typography>
-        Or just try again on your desktop. The app looks better that way anyway
-        :)
+        There was a problem getting your user data. This may be due to your
+        privacy settings. Please try using a different browser like Chrome or
+        Safari, or adjust your privacy/cookie settings.
       </Typography>
       <Button variant="contained" onClick={() => router.push("/")}>
         Return to login page
