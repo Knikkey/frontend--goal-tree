@@ -12,10 +12,11 @@ import { openMainGoals } from "@/redux/features/modalSlice";
 import { Button, Stack, Typography } from "@mui/material";
 import PlusButton from "@/mui-components/PlusButton";
 import MainGoalForm from "@/app/dashboard/_components/maingoals/MainGoalForm";
+import LoadingSpinner from "@/mui-components/LoadingSpinner";
 
 export default function MainGoals() {
   const dispatch = useDispatch<AppDispatch>();
-  const { mainGoals, currMainGoalId } = useTypedSelector(
+  const { mainGoals, currMainGoalId, pending } = useTypedSelector(
     (state) => state.goals
   );
   const { mainGoalIsOpen } = useTypedSelector((state) => state.modal);
@@ -40,6 +41,7 @@ export default function MainGoals() {
 
   return (
     <Stack spacing={2}>
+      {pending && <LoadingSpinner ariaLabel="main goals" />}
       {mainGoals &&
         mainGoals.map((goal) => (
           <Button
