@@ -33,7 +33,6 @@ export default function MainGoals() {
 
   const handleTreeRender = async (e: React.MouseEvent<HTMLElement>) => {
     const target = e.currentTarget as HTMLButtonElement;
-    console.log(target.id, currMainGoalId);
     if (target.id === currMainGoalId) return;
     dispatch(setCurrMainGoal(target.id));
     await dispatch(buildTree(target.id));
