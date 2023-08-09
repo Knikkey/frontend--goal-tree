@@ -16,7 +16,7 @@ import LoadingSpinner from "@/mui-components/LoadingSpinner";
 
 export default function MainGoals() {
   const dispatch = useDispatch<AppDispatch>();
-  const { mainGoals, currMainGoalId, pending } = useTypedSelector(
+  const { mainGoals, currMainGoalId } = useTypedSelector(
     (state) => state.goals
   );
   const { mainGoalIsOpen } = useTypedSelector((state) => state.modal);
@@ -41,7 +41,7 @@ export default function MainGoals() {
 
   return (
     <Stack spacing={2}>
-      {pending && <LoadingSpinner ariaLabel="main goals" />}
+      {!mainGoals && <LoadingSpinner ariaLabel="main goals" />}
       {mainGoals &&
         mainGoals.map((goal) => (
           <Button

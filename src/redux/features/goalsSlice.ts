@@ -101,21 +101,12 @@ export const goalsSlice = createSlice({
       state.pending = false;
       state.tree = action.payload;
     });
-    builder.addCase(buildTree.rejected, (state, action) => {
+    builder.addCase(buildTree.rejected, (state) => {
       state.pending = false;
       state.error = "An error occured";
-    });
-    builder.addCase(getMainGoals.pending, (state) => {
-      state.pending = true;
-      state.error = null;
     });
     builder.addCase(getMainGoals.fulfilled, (state, action) => {
-      state.pending = false;
       state.mainGoals = action.payload;
-    });
-    builder.addCase(getMainGoals.rejected, (state, action) => {
-      state.pending = false;
-      state.error = "An error occured";
     });
   },
 });
