@@ -33,7 +33,7 @@ export default function Home() {
         Goal Planner
       </Typography>
       <Typography variant="h5" component="h2" align="center">
-        Divide and Conquor Your Goals
+        Divide and Conquer Your Goals
       </Typography>
       <Button
         onClick={handleLogin}
