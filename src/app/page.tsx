@@ -65,9 +65,16 @@ export default function Home() {
       >
         {loading ? "Logging in..." : "Login With Google"}
       </Button>
-      {error && (
+      {loading && (
         <Typography variant="h6" component="p" color="error">
           An error occured
+        </Typography>
+      )}
+      {error && (
+        <Typography variant="h6" component="p" color="error">
+          Note: This project is being hosted via a free hosting service. It may
+          take a while to sign up. I can't afford a paid hosting service, so
+          please be patient. Thank you for understanding.
         </Typography>
       )}
     </Stack>
