@@ -6,8 +6,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Goal Tree Generator",
-  description: "Divide and conquor your goals ",
+  title: "Dream Forest",
+  description: "Where Dreams Come to Life, One Leaf at a Time",
 };
 
 export default function RootLayout({

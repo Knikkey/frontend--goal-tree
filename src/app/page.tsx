@@ -30,10 +30,10 @@ export default function Home() {
       alignItems="center"
     >
       <Typography variant="h2" component="h1" lineHeight="0.75" align="center">
-        Goal Planner
+        Dream Forest
       </Typography>
       <Typography variant="h5" component="h2" align="center">
-        Divide and Conquer Your Goals
+        Where Dreams Come to Life, One Leaf at a Time
       </Typography>
       <Button
         onClick={handleLogin}
