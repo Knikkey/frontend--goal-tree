@@ -73,7 +73,13 @@ export default function Home() {
         </Typography>
       )}
       {error && (
-        <Typography variant="h6" component="p" color="error">
+        <Typography
+          variant="h6"
+          component="p"
+          color="error"
+          align="center"
+          sx={{ width: "80%" }}
+        >
           An error occured
         </Typography>
       )}
