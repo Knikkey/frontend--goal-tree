@@ -67,14 +67,14 @@ export default function Home() {
       </Button>
       {loading && (
         <Typography variant="h6" component="p" color="error">
-          An error occured
+          Note: This project is being hosted via a free hosting service. It may
+          take a while to sign up. I can't afford a paid hosting service, so
+          please be patient. Thank you for understanding.
         </Typography>
       )}
       {error && (
         <Typography variant="h6" component="p" color="error">
-          Note: This project is being hosted via a free hosting service. It may
-          take a while to sign up. I can't afford a paid hosting service, so
-          please be patient. Thank you for understanding.
+          An error occured
         </Typography>
       )}
     </Stack>
