@@ -1,10 +1,10 @@
 ![Header](./readme-banner.png)
 
-# Goal Tree
+# Dream Forest
 
 Goal Tree is a web application where users can create and store their goals. They can then break those goals down into more managable sub-goals to accomplish their main goals without getting too overwhelmed. The resulting goal tree can be viewed as an interactive tree graph.
 
-View the hosted site here: [Dream Forest](https://goaltreebyknikkey.vercel.app/)
+View the hosted site here: [Dream Forest](https://dreamforest.vercel.app/)
 
 ## Usage
 
