@@ -66,7 +66,12 @@ export default function Home() {
         {loading ? "Logging in..." : "Login With Google"}
       </Button>
       {loading && (
-        <Typography variant="h6" component="p" color="error">
+        <Typography
+          variant="h6"
+          component="p"
+          color="error"
+          sx={{ width: "80%", margin: "0 auto" }}
+        >
           Note: This project is being hosted via a free hosting service. It may
           take a while to sign up. I can't afford a paid hosting service, so
           please be patient. Thank you for understanding.
